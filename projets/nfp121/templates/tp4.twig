@@ -1,0 +1,338 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >NFP 121 - TP4 : Pattern Observer - Evénement - Modèle MVC </h2>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-5">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Nom
+                            </td>
+                            <td>GRUENPETER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Prénom
+                            </td>
+                            <td>Morane Otilia
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Matricule
+                            </td>
+                            <td>100055662
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-4 ">
+                </div>
+                <div class="col-md-3 sources hidden-xs">
+                    <h2> Les sources </h2>
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 1</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <p>En premier temps, j'ai rempli le premier test et j'ai découvert que la méthode pop sur la pile des
+                                observables exige deux pop() avant d'être vide. Cela me paraissait une erreur et j'ai essayer de définir dans la classe
+                                de l'observateur une méthode qui fait le pop().
+                            </p>
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;Observable&nbsp;popObs(){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;<strong><font color='#7f0055'>this</font></strong>.senders.pop();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;Object&nbsp;popArgs(){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;<strong><font color='#7f0055'>this</font></strong>.arguments.pop();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            <p>
+                                Après quelques testes j'ai compris qu'à chaque fois que je faisais une insertion
+                                dans la liste observée, l'élement inséré passe à la pile arguments et la liste passe à la pile senders. Si la même liste
+                                est modifiée plusieurs fois, à chaque modification elle est insérée à la pile senders. Donc, il faut faire un pop() pour chaque élément
+                                inséré sur la pile senders, pour se retrouver à la fin avec une pile vide.
+                            </p>
+                            <p>Un exemple de tests avec deux listes et un observateur : </p>
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;deux&nbsp;listes,&nbsp;1&nbsp;observateur
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;test2()&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;question1.ConcreteSubject&nbsp;l1&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;question1.ConcreteSubject();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;question1.ConcreteSubject&nbsp;l2&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;question1.ConcreteSubject();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;question1.ConcreteObserver&nbsp;o&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;question1.ConcreteObserver();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(o.senders().empty()&nbsp;&&&nbsp;o.arguments().empty());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l1.addObserver(o);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l2.addObserver(o);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l1.insert(<font color='#2a00ff'>"testA"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l1.insert(<font color='#2a00ff'>"&nbsp;A&nbsp;"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l2.insert(<font color='#2a00ff'>"testB"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l2.insert(<font color='#2a00ff'>"&nbsp;B&nbsp;"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertEquals(<font color='#2a00ff'>"&nbsp;B&nbsp;"</font>,&nbsp;o.arguments().pop());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertEquals(<font color='#2a00ff'>"testB"</font>,&nbsp;o.arguments().pop());&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertEquals(<font color='#2a00ff'>"&nbsp;A&nbsp;"</font>,&nbsp;o.arguments().pop());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertEquals(<font color='#2a00ff'>"testA"</font>,&nbsp;o.arguments().pop());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertEquals(l2,&nbsp;o.senders().pop());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertEquals(l2,&nbsp;o.senders().pop());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertEquals(l1,&nbsp;o.senders().pop());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertEquals(l1,&nbsp;o.senders().pop());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;ne&nbsp;pas&nbsp;modifier&nbsp;cette&nbsp;ligne,&nbsp;dernière&nbsp;assertion&nbsp;vraie&nbsp;de&nbsp;cette
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;méthode
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(o.senders().empty()&nbsp;&&&nbsp;o.arguments().empty());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                        </div><!--end panel body-->
+                    </div>
+                </div>
+                <div class="col-md-3 sources">
+
+                    <a href="question1/ConcreteSubject.java"> <button type="button" class="btn btn-info">ConcreteSubject</button></a>
+                    <a href="question1/ConcreteObserver.java"> <button type="button" class="btn btn-info">ConcreteObserver</button></a>
+                    <a href="question1/PatternObservateur.java"> <button type="button" class="btn btn-info">PatternObservateur</button></a>
+
+                </div>
+            </div><!--end row -->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 2.1</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Cette question était pour moi comme une enigme où il fallait retablir le bon lien entre le pattern observateur-observable
+                                et les nouveaux éléments de AWT et SWING. Cela m'a pris beaucoup plus de temps que prévu et après la découverte de la solution de l'enigme,
+                                cet exercice parait facile.
+                            </p>
+                            <p>
+                                Premiérement, la classe JButtonObserver qui implémente ActionListener, celle-ci est l'observateur. avec la signatue: public class JButtonObserver implements  ActionListener.
+                                dans laquelle la méthode actionPerformed est redéfini pour permettre l'affichage de l'observation dans le textArea de l'applette.
+
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;affichage&nbsp;d'un&nbsp;message&nbsp;dans&nbsp;la&nbsp;zone&nbsp;de&nbsp;texte&nbsp;ce&nbsp;message&nbsp;est&nbsp;de&nbsp;la&nbsp;forme
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;observateur&nbsp;this.nom&nbsp;:&nbsp;clic&nbsp;du&nbsp;bouton&nbsp;nom_du_bouton&nbsp;exemple&nbsp;:&nbsp;observateur
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;jbo1&nbsp;:&nbsp;clic&nbsp;du&nbsp;bouton&nbsp;A,&nbsp;voir&nbsp;la&nbsp;méthode&nbsp;getActionCommand()
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@param</strong>&nbsp;event&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;actionPerformed(ActionEvent&nbsp;e)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;message&nbsp;=&nbsp;<font color='#2a00ff'>"L'observeur&nbsp;:"</font>+<strong><font color='#7f0055'>this</font></strong>.nom+<font color='#2a00ff'>"du&nbsp;bouton&nbsp;:"</font>+e.getActionCommand();&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contenu.append(message&nbsp;+&nbsp;<font color='#2a00ff'>"\n"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/><div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            <p>
+                                Puis, l'ajout des observateurs aux bouttons qui sont les observables.
+                            </p>
+
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;l'initiation&nbsp;des&nbsp;observateurs
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JButtonObserver&nbsp;jbo1&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;JButtonObserver(<font color='#2a00ff'>"jbo1"</font>,&nbsp;contenu);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JButtonObserver&nbsp;jbo2&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;JButtonObserver(<font color='#2a00ff'>"jbo2"</font>,&nbsp;contenu);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JButtonObserver&nbsp;jbo3&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;JButtonObserver(<font color='#2a00ff'>"jbo3"</font>,&nbsp;contenu);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;le&nbsp;bouton&nbsp;A&nbsp;a&nbsp;3&nbsp;observateurs&nbsp;jbo1,&nbsp;jbo2&nbsp;et&nbsp;jbo3
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boutonA.addActionListener(jbo1);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boutonA.addActionListener(jbo2);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boutonA.addActionListener(jbo3);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;le&nbsp;bouton&nbsp;B&nbsp;a&nbsp;2&nbsp;observateurs&nbsp;jbo1&nbsp;et&nbsp;jbo2
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boutonB.addActionListener(jbo1);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boutonB.addActionListener(jbo2);
+                                <br/>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;le&nbsp;bouton&nbsp;C&nbsp;a&nbsp;1&nbsp;observateur&nbsp;jbo1
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boutonC.addActionListener(jbo1);<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                        </div><!--end panel body-->
+                    </div>
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 2.2</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Cette question était beaucoup plus simple après la question précédente, avec l'implémentation
+                                de l'observation des action du mouvement de la souris sur l'élément observé</p>
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;affichage&nbsp;d'un&nbsp;message&nbsp;dans&nbsp;la&nbsp;zone&nbsp;de&nbsp;texte&nbsp;ce&nbsp;message&nbsp;est&nbsp;de&nbsp;la&nbsp;forme
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;observateur&nbsp;this.nom&nbsp;:&nbsp;souris&nbsp;entrée&nbsp;en&nbsp;(X,Y)&nbsp;exemple&nbsp;:&nbsp;observateur&nbsp;jmo1
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;:&nbsp;souris&nbsp;entrée&nbsp;en&nbsp;(15,20)
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@param</strong>&nbsp;MouseEvent&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;mouseEntered(MouseEvent&nbsp;e)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;message&nbsp;=&nbsp;<font color='#2a00ff'>"L'observeur&nbsp;:"</font>+<strong><font color='#7f0055'>this</font></strong>.nom+<font color='#2a00ff'>"souris&nbsp;entrée&nbsp;en&nbsp;("</font>+e.getX()+<font color='#2a00ff'>","</font>+&nbsp;e.getY()+<font color='#2a00ff'>")"</font>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contenu.append(message&nbsp;+&nbsp;<font color='#2a00ff'>"\n"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+
+                            <p>Puis l'ajout des observateurs aux observables dans l'applette :</p>
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>&nbsp;(testSouris)&nbsp;{&nbsp;<font color='#3f7f5f'>//&nbsp;à&nbsp;compléter&nbsp;en&nbsp;q2.2
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;le&nbsp;bouton&nbsp;A&nbsp;a&nbsp;1&nbsp;observateur&nbsp;jmo1
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boutonA.addMouseListener(<strong><font color='#7f0055'>new</font></strong>&nbsp;JMouseObserver(<font color='#2a00ff'>"jmo1"</font>,&nbsp;contenu));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;le&nbsp;bouton&nbsp;B&nbsp;a&nbsp;1&nbsp;observateur&nbsp;jmo2
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boutonB.addMouseListener(<strong><font color='#7f0055'>new</font></strong>&nbsp;JMouseObserver(<font color='#2a00ff'>"jmo2"</font>,&nbsp;contenu));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;le&nbsp;bouton&nbsp;C&nbsp;a&nbsp;1&nbsp;observateur&nbsp;jmo3
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boutonC.addMouseListener(<strong><font color='#7f0055'>new</font></strong>&nbsp;JMouseObserver(<font color='#2a00ff'>"jmo3"</font>,&nbsp;contenu));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                        </div><!--end panel body-->
+                    </div>
+                </div>
+
+                <div class="col-md-3 sources">
+                    <a href="question2/AppletteQuestion2.java"> <button type="button" class="btn btn-info">AppletteQuestion2</button></a>
+                    <a href="question2/JbuttonObserver.java"> <button type="button" class="btn btn-info">JbuttonObserver</button></a>
+                    <a href="question2/JMouseObserver.java"> <button type="button" class="btn btn-info">JMouseObserver</button></a>
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 3.1</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                Premièrement je n'ai pas compris pourquoi le controleur n'avais pas accès à la vue qui représente l'affichage des modifications
+                                de la pile (le modèle). En plus la méthode notifyObservers( déclenchait pas la méthode uptade() dans la vue.<br/>
+                                Pour trouver la solution, j'ai ajouté une méthode main à l'applet et j'ai découvert que je n'appelais pas la méthode setChange() qui
+                                est très importante dans le couple observé observateur.<br />
+                                <br />
+                                Après cette découverte, j'ai pu achevé la calculette. <br />
+                                Ci-dessous les appels dans <strong>la classe Applette</strong>
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PileModele<Integer>&nbsp;modele&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;PileModele<Integer>(<strong><font color='#7f0055'>new</font></strong>&nbsp;Pile2<Integer>(5));
+                                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vue&nbsp;vue&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;Vue(modele);
+                                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modele.addObserver(vue);
+                                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Controleur&nbsp;controle&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;Controleur(modele);<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+
+                            </p>
+                            <p>
+                                Dans <strong>la classe controleur</strong> sur chaque bouton j'ai mis un listener ponctuel, ci-dessous un exemple de "push" :
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;boutons.add(push);&nbsp;&nbsp;push.addActionListener(<strong><font color='#7f0055'>new</font></strong>&nbsp;ActionListener(){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;actionPerformed(ActionEvent&nbsp;ae){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Controleur.<strong><font color='#7f0055'>this</font></strong>.push();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            <p>
+                                Celui-ci appel une fonction dans le controleur qui modifie le modèle :
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;push(){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>try</font></strong>{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.pile.empiler(operande());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<strong><font color='#7f0055'>catch</font></strong>(Exception&nbsp;e){
+                                <br/>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.actualiserInterface();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            </p>
+                            </p>
+                            <p>
+                                <strong>La classe Modèle</strong> hérite de la classe Observable. <br />
+                                Le modèle utilise les méthodes notifyObservers() et setChanged() après chaque changement de la pile,
+                                pour permettre à la vue d'afficher une pile correcte avec la méthode update().<br/>
+                                Dans le Modèle:
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;empiler(T&nbsp;o)&nbsp;<strong><font color='#7f0055'>throws</font></strong>&nbsp;PilePleineException&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>try</font></strong>{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.pile.empiler(o);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<strong><font color='#7f0055'>catch</font></strong>(Exception&nbsp;e){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<strong><font color='#7f0055'>finally</font></strong>{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setChanged();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notifyObservers();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            <strong>La classe Vue</strong> implémente la classe Observer.
+                            Dans la vue est déffini la méthode update() qui prend en charge les modifications de l'observable:
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Mise&nbsp;à&nbsp;jour&nbsp;de&nbsp;la&nbsp;pile
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<strong>@Override</strong>
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<strong>@Param</strong>&nbsp;le&nbsp;modèlé&nbsp;observé
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;update(Observable&nbsp;obs,&nbsp;Object&nbsp;arg)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;etatPile.setText(<strong><font color='#7f0055'>this</font></strong>.pile.toString());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            </p>
+                        </div><!--end panel body-->
+                    </div>
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 3.2</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                Au départ je n'avais pas compris le choix de mettre des boutons locaux au controleur.
+                                Cela est peut être plus adapté pour peu de boutons. En plus je ne voyais pas comment la vue était maîtrisé si
+                                le controleur n'a pas accès à la vue. Au final, j'ai trouvé cet exemple très formatteur et l'architecture
+                                adéquate à la taille du projet. Avec une interface plus complexe avec plus de boutons et de méthodes de contrôle,
+                                cette architecture peut être un peu lourde.
+                            </p>
+                            <p>
+                                Une proposition, est d'utilisé l'appletteCalculatrice en tant que vue qui hérite de la classe Observer et ne pas déléger
+                                une partie Jpanel à la classe Vue. Cette proposition est bien trop simple et n'est pas adapté à la question 3.3 par exemple.
+                            </p>
+                            <img src="images/diagram.png" />
+                            <p>
+                                J'ai besoin de plus de recul pour conceptualiser d'autres architectures MVC.
+                            </p>
+                        </div><!--end panel body-->
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 3.3</h3>
+                        </div>
+                        <div class="panel-body">
+                            J'ai seulement ajouter la classe Vue2, copiée directement des instructions du TP et les lignes suivantes à la classe ApletteCalculette:
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vue2&nbsp;vue2&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;Vue2(modele);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modele.addObserver(vue2);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add(vue2);<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            <img src="images/jauge.png" />
+                        </div><!--end panel body-->
+                    </div>
+                </div>
+                <div class="col-md-3 sources">
+                    <a href="question3/AppletteCalculette.java"> <button type="button" class="btn btn-info">AppletteCalculette </button></a>
+
+                    <a href="question3/Vue.java"> <button type="button" class="btn btn-info">Vue </button></a>
+                    <a href="question3/PileModele.java"> <button type="button" class="btn btn-info">Modele </button></a>
+                    <a href="question3/Controleur.java"> <button type="button" class="btn btn-info">Controleur </button></a>
+                    <a href="question3/Vue2.java"> <button type="button" class="btn btn-info">Vue2 </button></a>
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-left">Conclusion, bibliographie et remarques :</h3>
+                        </div>
+                        <div class="panel-body text-left">
+                            Ce Tp était très intéressant mais un peu long à mon avis. Les premières questions m'ont beaucoup aidé pour résoudre la troisième question,
+                            mais celle-ci mérite un tp entier avec plus d'étapes. J'aurais bien aimé imaginer une autre conception des classes de la question 3 mais à ce stade
+                            je ne savais pas si mes idées sont pertinantes pour avoir une architecture logique d'une calculatrice en MVC.
+                        </div>
+                    </div>
+
+
+
+                    </p>
+                </div>
+
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+{%   endblock content %}

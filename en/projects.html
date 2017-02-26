@@ -1,0 +1,168 @@
+<?php include 'head.html';?>
+<?php include 'menu.html';?>
+
+
+<div class="container page ">
+
+<!--  start contenu de la page-->
+<div class="row">
+<h1 id="invite" >Code and Programming ! </h1>
+</div>
+<div class="row">
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <!--open project, to close delete "in" in class collapse-->
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingEight">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                        <span class="badge"> 2015</span>
+                        <span class="space-left text-uppercase">Operations Research (OR) project </span>
+                        <h6 class="pull-right hidden-xs"> java / GLPK </h6>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingEight">
+                <div class="panel-body">
+                    <?php include 'projects/affectationRO.html';?>
+                </div>
+            </div>
+        </div>
+        <!--closed projects-->
+				<?php
+				$projets = array ('affectationRO', 'dressin', 'nfp121', 'stage','store','cyc', 'battleship');
+				for ($numero = 0; $numero < 5; $numero++)
+				{
+				    //echo $projets[$numero] . '<br />'; // affichera $prenoms[0], $prenoms[1] etc.
+				}
+
+				?>
+				<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingDressin">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseDressin" aria-expanded="false" aria-controls="collapseOne">
+					  <span class="badge"> 2015</span>
+						<span class="space-left text-uppercase">Information Systems and Web</span>
+					  <h6 class="pull-right hidden-xs"> php / javascript / html / css</h6>
+					</a>
+				  </h4>
+				</div>
+				<div id="collapseDressin" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingDressin">
+				  <div class="panel-body">
+					<?php include 'projects/dressin.html';?>
+				  </div>
+				</div>
+			  </div>
+	  <div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingOne">
+		  <h4 class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+			  <span class="badge"> 2015</span>
+				<span class="space-left text-uppercase">Advanced programing course </span>
+			  <h6 class="pull-right hidden-xs"> java / patterns / Swing / xml</h6>
+			</a>
+		  </h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+		  <div class="panel-body">
+			<?php include 'projects/nfp121.html';?>
+		  </div>
+		</div>
+	  </div>
+
+	   <div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingTwo">
+		  <h4 class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				<span class="badge"> 2014</span>
+				<span class="space-left text-uppercase">The internship- ★MySuperSouvenir </span>
+			  <h6 class="pull-right hidden-xs">Backbonejs / bootstrap / jQuery /javascript / analytics</h6>
+			</a>
+		  </h4>
+		</div>
+		<div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo">
+		  <div class="panel-body">
+			<?php include 'projects/stage.html';?>
+		  </div>
+		</div>
+	  </div>
+
+
+	  <div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingFour">
+		  <h4 class="panel-title">
+			<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+			  <span class="badge"> 2014</span>
+			  <span class="space-left text-uppercase"> The store </span>
+			  <h6 class="pull-right hidden-xs"> a store business application/ Java </h6>
+			</a>
+		  </h4>
+		</div>
+		<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+		  <div class="panel-body">
+			<?php include 'projects/store.html';?>
+		  </div>
+		</div>
+	  </div>
+	   <div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingFive">
+		  <h4 class="panel-title">
+			<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+			  <span class="badge"> 2013</span>
+			  <span class="space-left text-uppercase"> Table calculation </span>
+			  <h6 class="pull-right hidden-xs">Cnam project for object programming/Java (simple interface)</h6>
+			</a>
+		  </h4>
+		</div>
+		<div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+		  <div class="panel-body">
+			<?php include 'projects/table.html';?>
+		  </div>
+		</div>
+	  </div>
+	   <div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingSix">
+		  <h4 class="panel-title">
+			<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+			  <span class="badge"> 2013</span>
+			  <span class="space-left text-uppercase">Cycling competition </span>
+			  <h6 class="pull-right hidden-xs">static java programming exercise/ Java (static)</h6>
+			</a>
+		  </h4>
+		</div>
+		<div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+		  <div class="panel-body">
+			<?php include 'projects/cyc.html';?>
+
+		  </div>
+		</div>
+	  </div>
+	   <div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="headingSeven">
+		  <h4 class="panel-title">
+			<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+			  <span class="badge"> 2012</span>
+			  <span class="space-left text-uppercase">Battleship </span>
+			  <h6 class="pull-right hidden-xs"> easiest game machine vs human/Java (static)</h6>
+			</a>
+		  </h4>
+		</div>
+		<div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+		  <div class="panel-body">
+			<?php include 'projects/battleship.html';?>
+
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+ 	</div>
+<?php include'footer.html';?>

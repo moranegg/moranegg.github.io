@@ -1,0 +1,76 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >ITERATOR </h2>
+                    <p>
+                        l'objectif  du pattern ITERATOR est de fournir un moyen d'accéder de façon séquentielle aux éléments d'une collection.
+                        Comment parcourir une structure quelque soit son implémentation?
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-left">
+
+                    <img src="../images/iterator.gif" />
+
+
+                </div>
+                <div class="col-md-6 text-left">
+                    <h3>Exemples :</h3>
+                    <p>Différents type de collection, qui contienent des items, l'utilisation du code ci-dessous pour
+                        créer un itérateur sur chaque. </br>
+                        Menu est une interface qui oblige chaque menu concret l'implémentation de la méthode createIterator(). la création de
+                        l'itérateur dépend du type de collection qui représente ce menu.
+                    </p>
+
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>import</span> java.util.Iterator;
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>interface</span> Menu <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> Iterator&lt;?&gt; createIterator();
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> Waitress <span style='font-weight:bold;color:#D3171B'>{</span>
+                    ArrayList&lt;MenuItem&gt; menus;
+
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> Waitress(ArrayList&lt;MenuItem&gt; menus) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    this.menus = menus;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> printMenu() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    Iterator&lt;?&gt; menuIterator = menus.iterator();
+                    <span style='font-weight:bold;color:#7B0052;'>while</span>(menuIterator.hasNext()) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    Menu menu = (Menu)menuIterator.next();
+                    printMenu(menu.createIterator());
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>void</span> printMenu(Iterator&lt;?&gt; iterator) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>while</span> (iterator.hasNext()) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    MenuItem menuItem = (MenuItem)iterator.next();
+                    System.out.print(menuItem.getName() + <span style='color:#2A00FF'>", "</span>);
+                    System.out.print(menuItem.getPrice() + <span style='color:#2A00FF'>" -- "</span>);
+                    System.out.println(menuItem.getDescription());
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                    <p> Sur une hashmap par exemple:</p>
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> Iterator&lt;MenuItem&gt; createIterator() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> menuItems.values().iterator();
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+                </div>
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+{% endblock content %}

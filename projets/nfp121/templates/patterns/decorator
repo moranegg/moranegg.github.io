@@ -1,0 +1,80 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >DECORATOR </h2>
+                    <p>
+                        l'objectif  du pattern DECORATOR est de vous permettre de composer de nouvelles variations d'une opération lors de
+                        l'exécution.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-left">
+                    <h3> Le pattern </h3>
+                    <img src="../images/decorator.png" />
+                    <br />
+                    <h3> En inputStream </h3>
+                    <img src="../images/decorator_inputstream.png" width="500" />
+
+                </div>
+                <div class="col-md-6 text-left">
+                    <h3>Exemples :</h3>
+
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> UpperCaseInputStream  <span style='font-weight:bold;color:#7B0052;'>extends</span> FilterInputStream<span style='font-weight:bold;color:#D3171B'>{</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> UpperCaseInputStream(InputStream in)<span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>super</span>(in);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+    <span style='color:#3F5FBF'>/**
+     * Redefinition of read() method while changing input to upper case
+     */</span>
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>int</span> read() <span style='font-weight:bold;color:#7B0052;'>throws</span> IOException<span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>int</span> c = super.read();
+                    <span style='font-weight:bold;color:#7B0052;'>if</span>(c != -1)<span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> Character.toUpperCase((<span style='font-weight:bold;color:#7B0052;'>char</span>) c);
+                    <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> c;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>int</span> read(byte[] b, <span style='font-weight:bold;color:#7B0052;'>int</span> off, <span style='font-weight:bold;color:#7B0052;'>int</span> len) <span style='font-weight:bold;color:#7B0052;'>throws</span> IOException<span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>int</span> c= super.read(b, off,len);
+                    <span style='font-weight:bold;color:#7B0052;'>for</span>(<span style='font-weight:bold;color:#7B0052;'>int</span> i = off; i&lt;off+c; i++)<span style='font-weight:bold;color:#D3171B'>{</span>
+                    b[i] = (<span style='font-weight:bold;color:#7B0052;'>byte</span>)Character.toUpperCase((<span style='font-weight:bold;color:#7B0052;'>char</span>)b[i]);
+
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> c;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                    <h3> Chez le client</h3>
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> testPushPackUpperCase_README_TXT() <span style='font-weight:bold;color:#7B0052;'>throws</span> Exception<span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                    InputStream is = <span style='font-weight:bold;color:#7B0052;'>new</span> UpperCaseInputStream(<span style='font-weight:bold;color:#7B0052;'>new</span> PushbackInputStream( <span style='font-weight:bold;color:#7B0052;'>new</span> BufferedInputStream( <span style='font-weight:bold;color:#7B0052;'>new</span> FileInputStream(<span style='font-weight:bold;color:#7B0052;'>new</span> File(<span style='color:#2A00FF'>"README.TXT"</span>)))));
+                    <span style='font-weight:bold;color:#7B0052;'>int</span> c = is.read();
+                    <span style='font-weight:bold;color:#7B0052;'>while</span>( c != -1)<span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>if</span>(Character.isLetter((<span style='font-weight:bold;color:#7B0052;'>char</span>)c))<span style='font-weight:bold;color:#D3171B'>{</span>
+                    assertTrue(<span style='color:#2A00FF'>"erreur !, '"</span> + Character.valueOf((<span style='font-weight:bold;color:#7B0052;'>char</span>)c) + <span style='color:#2A00FF'>"' ne semble pas être une majuscule ..."</span>, Character.isUpperCase((<span style='font-weight:bold;color:#7B0052;'>char</span>)c) || (<span style='font-weight:bold;color:#7B0052;'>char</span>)c==<span style='color:#2A00FF'>' '</span>);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    c = is.read();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    is.close();
+                    <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>catch</span>(Exception e)<span style='font-weight:bold;color:#D3171B'>{</span>
+                    fail(<span style='color:#2A00FF'>" exception : "</span>+ e);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                </div>
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+
+{% endblock content %}

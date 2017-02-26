@@ -1,0 +1,491 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >NFP 121 - TP6 : WhileL et les Visiteurs</h2>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-5">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Nom
+                            </td>
+                            <td>GRUENPETER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Prénom
+                            </td>
+                            <td>Morane Otilia
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Matricule
+                            </td>
+                            <td>100055662
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-4 ">
+                </div>
+                <div class="col-md-3 sources hidden-xs">
+                    <h2> Les sources </h2>
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 1.1</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <p>Le pattern visitor/visteur est très puissant car en modifiant seulement les différent visiteur, j'ai pu réaliser
+                                3 objectifs différents dans l'arbre des expressions:
+                            <ul>
+                                <li>Un parcours infixe et son affichage</li>
+                                <li>Un parcours postfixe et son affichage</li>
+                                <li>Une valuation de l'arbre des exrpression</li>
+                            </ul>
+                            </p>
+                            <p>
+                                Cette modification était possible grâce à une méthode générique avec la méthode suivante : <br/>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> &lt;T&gt; T accepter(VisiteurExpression&lt;T&gt; v) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> v.visite(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                            Dans le visiteur le type générique T est défini (par exemple pour la valuation il me fallait un  type Integer
+                            par contre à l'affichage où il me fallait un type String). Puis les différente méthode de visite pour chaque classe
+                            qui détermine le résultat d'une telle visite.
+                            </p>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>package</span> question1;
+<span style='color:#3F5FBF'>/**
+ * La classe VisiteurEvaluation permet de parcourir un arbre d'expressions et de retourner la valeur totales
+ * de ses expressions.
+ */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> VisiteurEvaluation <span style='font-weight:bold;color:#7B0052;'>extends</span> VisiteurParDefaut&lt;Integer&gt; <span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>private</span> Contexte c;
+    <span style='color:#3F5FBF'>/**
+     * constructeur du VisiteurEvaluation avec un contexte c (représente la mémoire)
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> VisiteurEvaluation(Contexte c) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            this.c = c;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une constante c
+     * @return la valeur de cette Constante
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Constante c) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> c.valeur();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une variable v
+     * @return la valeur de cette Variable
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Variable v) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> this.c.lire(v.nom());
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une Division d
+     * @return la valeur de cette Division
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Division d) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span>  d.op1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) / d.op2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une Addition a
+     * @return la valeur de cette Addition
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Addition a) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> a.op1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) + a.op2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une Multiplication m
+     * @return la valeur de cette Multiplication
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Multiplication m) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span>  m.op1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) * m.op2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une Soustraction s
+     * @return la valeur de cette Soustraction
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Soustraction s) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span>  s.op1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) - s.op2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * Le getter du contexte de ce visiteur
+     * @return Contexte du visiteur
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Contexte contexte() <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> c;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                        </div><!--end panel body-->
+                    </div>
+                </div>
+                <div class="col-md-3 sources">
+
+                    <a href="question1/VisiteurExpression.java"> <button type="button" class="btn btn-info">VisiteurExpression</button></a>
+                    <a href="question1/VisiteurParDefaut.java"> <button type="button" class="btn btn-info">VisiteurParDefaut</button></a>
+                    <a href="question1/VisiteurEvaluation.java"> <button type="button" class="btn btn-info">VisiteurEvaluation</button></a>
+                    <a href="question1/VisiteurInfixe.java"> <button type="button" class="btn btn-info">VisiteurInfixe</button></a>
+
+                    <a href="question1/VisiteurPostfixe.java"> <button type="button" class="btn btn-info">VisiteurPostfixe</button></a>
+                    <a href="question1/TestsACompléter.java"> <button type="button" class="btn btn-info">TestsACompléter</button></a>
+
+
+                </div>
+            </div><!--end row -->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 2</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>La question 2 permettait d'écrire les méthode de visite dans un contexte d'évaluation boolèenne et de transformation
+                                en java. Cette exercice était en accord avec la prmière question, en essayant nous même de déffinir des méthodes qui
+                                non pas été déffini en cours. Ci-dessous le visiteur d'évaluation:</P>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>package</span> question2;
+
+                            <span style='font-weight:bold;color:#7B0052;'>import</span> question1.VisiteurExpression;
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> VisiteurBoolEvaluation <span style='font-weight:bold;color:#7B0052;'>extends</span> VisiteurExpressionBooleenne&lt;Boolean&gt; <span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>private</span> VisiteurExpression&lt;Integer&gt; ve;
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> VisiteurBoolEvaluation(VisiteurExpression&lt;Integer&gt; ve) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            this.ve = ve;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Vrai v) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>true</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Faux f) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>false</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Non n) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> ! n.bop().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Ou ou) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span>  ou.bop1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) || ou.bop2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Et et) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> et.bop1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) && et.bop2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Sup sup) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> sup.op1().accepter(ve) &gt; sup.op2().accepter(ve);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Egal eg) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> eg.op1().accepter(ve) == eg.op2().accepter(ve);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Inf inf) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> inf.op1().accepter(ve) &lt; inf.op2().accepter(ve);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre></div><!--end panel body-->
+                    </div>
+
+
+                </div>
+                <div class="col-md-3 sources">
+                    <a href="question2/VisiteurBoolEvaluation.java"> <button type="button" class="btn btn-info">VisiteurBoolEvaluation</button></a>
+                    <a href="question2/VisiteurBoolToJava.java"> <button type="button" class="btn btn-info">VisiteurBoolToJava</button></a>
+                    <a href="question2/VisiteurBoolToString.java"> <button type="button" class="btn btn-info">VisiteurBoolToString</button></a>
+                    <a href="question2/VisiteurExpressionBooleenne.java"> <button type="button" class="btn btn-info">VisiteurExpressionBooleenne</button></a>
+
+                </div>
+
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 3.1</h3>
+                        </div>
+                        <div class="panel-body">
+                            Le langage est construit de différentes briques à l'aide des deux questions précédentes qui sont les plus petites
+                            feuilles dans l'architecture. Les éléments d'expression numerique ou booléenne dans une structure donnée forme
+                            des séquences de d'instruction. <br/>
+                            dans notre cas toutes ces formes héritent d'une classe abstraite instruction.
+                            <ul>
+                                <li> Une instruction peut être:
+                                    <ul>
+                                        <li> Une séquence d'instruction - contient 2 instructions</li>
+                                        <li> Une selection- constituée d'une condition et d'une ou deux instructions</li>
+                                        <li>Une affectation- qui change en mémoire la valeur(Expression numérique) d'une variable</li>
+                                        <li>Une assertion -qui comporte une comdition et un message</li>
+                                        <li> Une itération- avec deux classes filles </br>
+                                            l'itération tant que la condition passe les instructions qui peuvent de tous type sont à faire. </br>
+                                            l'itération pour, qui présente un certain nombre d'itération à faire si la condition est vrai.
+
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                            <p> l'exercice consistait à remplir les deux visiteurs qui parcours les instructions. Le premier est un visiteur
+                                d'évaluation et le second est un visiteur de transformation en java. Chaque visiteur contient un visteur
+                                d'expression booléenne et un visiteur d'expression numérique. Ci-dessous quelques méthodes du visiteur d'évaluation des instructions</p>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='color:#3F5FBF'>/** Visite d'une instance de la classe Affectation.
+     *
+     * l'affectation, X = Exp, Exp est une expression arithmétique &lt;br&gt;
+     * &lt;code&gt;
+     *
+     *     M,Exp -interprete-&gt; N       &lt;br&gt;
+     * ________________________________&lt;br&gt;
+     * M, X = Exp -interprete-&gt; M[X]=N &lt;br&gt;
+     * &lt;/code&gt;
+     *
+     * @param a  une affectation
+     * @return la mémoire résultante
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Contexte visite(Affectation a)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            this.vi.contexte().ecrire(a.v().nom(), a.exp().accepter(this.vi));
+
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> this.vi.contexte();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/** Visite d'une séquence seq(I1,I2) &lt;br&gt;
+     * &lt;code&gt;
+     *
+     *    M,I1 -interprete-&gt; M1        &lt;br&gt;
+     *    M1,I2 -interprete-&gt; M2       &lt;br&gt;
+     * ________________________________&lt;br&gt;
+     *    M,seq(I,I2)-interprete-&gt; M2  &lt;br&gt;
+     *&lt;/code&gt;
+     *
+     * @param seq  une séquence
+     * @return la mémoire résultante
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Contexte visite(Sequence seq)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            seq.i1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            seq.i2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> this.vi.contexte();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/** Visiste d'une sélection si (Bexp) alors I1 sinon I2 fsi &lt;br&gt;
+     * ou si (Bexp) alors I1 fsi &lt;br&gt;
+     *
+     * &lt;code&gt;
+     *
+     *      M,Bexp-interprete-&gt; vrai             &lt;br&gt;
+     *      M,I1 -interprete-&gt; M1                &lt;br&gt;
+     * _________________________________________ &lt;br&gt;
+     * M,si(Bexp)alorsI1 sinon I2-interprete-&gt; M1&lt;br&gt;
+     *
+     *      M,Bexp -interprete-&gt; faux            &lt;br&gt;
+     *      M,I2 -interprete-&gt; M2                &lt;br&gt;
+     * __________________________________________&lt;br&gt;
+     * M,si(Bexp)alorsI1 sinon I2-interprete-&gt;M2 &lt;br&gt;
+     * &lt;/code&gt;
+     *
+     * @param sel  une sélection
+     * @return la mémoire résultante
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Contexte visite(Selection sel)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(sel.cond().accepter(this.vb))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            sel.i1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>else</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span> (sel.i2() != <span style='font-weight:bold;color:#7B0052;'>null</span>)  <span style='font-weight:bold;color:#D3171B'>{</span>
+                            sel.i2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> this.vi.contexte(); <span style='color:#3F7F5F'>// à compléter en retournant le contexte modifié;
+</span>    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/** La boucle tantque(Bexp,I1)&lt;br&gt;
+     * &lt;code&gt;
+     *
+     *     M,Bexp -interprete-&gt;faux              &lt;br&gt;
+     * _________________________________________ &lt;br&gt;
+     * M,tantque(Bexp) faire I1-interprete-&gt; M   &lt;br&gt;
+     * &lt;br&gt;
+     * M,Bexp -interprete-&gt; vrai                          &lt;br&gt;
+     * M,seq(I1,tantque(Bexp)faire I1)-interprete-&gt; M1    &lt;br&gt;
+     * ___________________________________________________&lt;br&gt;
+     * M,tantque(Bexp)faire I1-interprete-&gt; M1
+     * &lt;/code&gt;
+     *
+     * @param tq  une itération de la classe tantque
+     * @return la mémoire résultante
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Contexte visite(TantQue tq)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>new</span> Selection(tq.cond(),
+                            <span style='font-weight:bold;color:#7B0052;'>new</span> Sequence(
+                            tq.i1(),
+                            <span style='font-weight:bold;color:#7B0052;'>new</span> TantQue( tq.cond(), tq.i1() )
+                            )
+                            ).accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> this.vi.contexte();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/** La boucle pour(init,Bexp,inc)I1&lt;br&gt;
+     * &lt;code&gt;
+     * M,seq(init,tantque(Bexp)seq(I1,inc))-visite-&gt;faux &lt;br&gt;
+     * _____________________________________________________ &lt;br&gt;
+     * M,pour(init,Bexp,inc) faire I1-visite-&gt; M         &lt;br&gt;
+     * &lt;/code&gt;
+     *
+     * @param pour  une itération de la classe Pour
+     * @return la mémoire résultante
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Contexte visite(Pour pour)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            pour.init().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#7B0052;'>new</span> Selection(pour.cond(),
+                            <span style='font-weight:bold;color:#7B0052;'>new</span> Sequence(
+                            pour.i1(),
+                            <span style='font-weight:bold;color:#7B0052;'>new</span> Sequence(
+                            pour.inc(),
+                            <span style='font-weight:bold;color:#7B0052;'>new</span> Pour(pour.init(), pour.cond(), pour.i1(),pour.inc() )
+                            )
+                            )
+                            ).accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> this.vi.contexte(); <span style='color:#3F7F5F'>// à compléter en retournant le contexte modifié;
+</span>    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/** L'affichage&lt;br&gt;
+     * &lt;code&gt;
+     *
+     *    M,Exp-visite-&gt; n                              &lt;br&gt;
+     * ________________________________System.out.print(n)&lt;br&gt;
+     * M,afficher(Exp)-visite-&gt; M
+     * &lt;/code&gt;
+     *
+     * @param a  une instruction d'affichage d'une expression arithmétique
+     * @return la mémoire intacte
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Contexte visite(Afficher a)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            System.out.println(a.exp().accepter(this.vi));
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> this.vi.contexte();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/** Une assertion,
+     * si celle-ci échoue une exception est levée,
+     * emploi de la clause &lt;a href=http://java.sun.com/j2se/1.5.0/docs/guide/language/assert.html&gt; assert&lt;/a&gt; Expr : "un Message";
+     *
+     * @param a  une assertion
+     * @return la mémoire intacte
+     * @throws une exception AssertionError
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Contexte visite(Assertion a) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(!a.cond().accepter(this.vb))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> AssertionError();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> this.vi.contexte(); <span style='color:#3F7F5F'>// à compléter en retournant le contexte modifié;
+</span>    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+                            <br />
+                            <p> ce qui était compliqué dans le visiteur de transformation en java, était la notion de fin d'instruction. Car les instructions qui sont
+                                des feuilles de ma structure doivent avoir un ";" , or le cas de la boucle for nous montre que ce n'est pas toujours le cas. donc il m'a fallu ajouter
+                                des condition de instanceof pour vérifier quel est le type de l'instruction comme j'ai pu faire dans la méthode ci-dessous:
+                            </p>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='color:#3F5FBF'>/**
+     * Visiste d'une séquence seq(I1,I2) &lt;br&gt;
+     *
+     * @param seq
+     *            une séquence
+     * @return i1;i2
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> String visite(Sequence seq) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            String str = <span style='color:#2A00FF'>"\n"</span> +seq.i1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#7B0052;'>if</span> (seq.i1() <span style='font-weight:bold;color:#7B0052;'>instanceof</span> Affectation)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            str+=<span style='color:#2A00FF'>";"</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            str += <span style='color:#2A00FF'>"\n"</span>+seq.i2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                            <span style='font-weight:bold;color:#7B0052;'>if</span> (seq.i2() <span style='font-weight:bold;color:#7B0052;'>instanceof</span> Affectation)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            str+=<span style='color:#2A00FF'>";"</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> str + <span style='color:#2A00FF'>"\n"</span>; <span style='color:#3F7F5F'>// à compléter
+</span>    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                        </div><!--end panel body-->
+                    </div>
+
+
+                </div>
+                <div class="col-md-3 sources">
+
+
+                    <a href="question3/Affectation.java"> <button type="button" class="btn btn-info"> Affectation</button></a>
+                    <a href="question3/Afficher.java"> <button type="button" class="btn btn-info">Afficher </button></a>
+                    <a href="question3/Assertion.java"> <button type="button" class="btn btn-info"> Assertion</button></a>
+                    <a href="question3/BouclePour.java"> <button type="button" class="btn btn-info">BouclePour </button></a>
+                    <a href="question3/ClasseJava.java"> <button type="button" class="btn btn-info"> ClasseJava</button></a>
+                    <a href="question3/ClasseJavaTest.java"> <button type="button" class="btn btn-info"> ClasseJavaTest</button></a>
+                    <a href="question3/Instruction.java"> <button type="button" class="btn btn-info">Instruction </button></a>
+                    <a href="question3/Iteration.java"> <button type="button" class="btn btn-info">Iteration</button></a>
+                    <a href="question3/Mult.java"> <button type="button" class="btn btn-info"> Mult</button></a>
+                    <a href="question3/Pour.java"> <button type="button" class="btn btn-info">Pour </button></a>
+                    <a href="question3/Selection.java"> <button type="button" class="btn btn-info"> Selection</button></a>
+                    <a href="question3/Sequence.java"> <button type="button" class="btn btn-info"> Sequence</button></a>
+                    <a href="question3/TantQue.java"> <button type="button" class="btn btn-info">TantQue </button></a>
+                    <a href="question3/VisiteurInstruction.java"> <button type="button" class="btn btn-info">VisiteurInstruction </button></a>
+                    <a href="question3/VisiteurInstEvaluation.java"> <button type="button" class="btn btn-info"> VisiteurInstEvalution</button></a>
+                    <a href="question3/VisiteurInstToJava.java"> <button type="button" class="btn btn-info"> VisiteurInstToJava</button></a>
+                    <a href="question3/VisiteurInstToString.java"> <button type="button" class="btn btn-info"> VisiteurInstToString</button></a>
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-left">Conclusion, bibliographie et remarques :</h3>
+                        </div>
+                        <div class="panel-body text-left">
+                            <p>
+                                Premièrement les questions 1 et 2 étaient assez facile à faire après une compréhension profonde du pattern et du cours.
+                                Concernant la question 3 je trouvais qu'elle est très intéressante et elle demande un effort suplémentaire par rapport au
+                                deux premières questions, or il n'y a pas suffisament d'indices dans les tests pour réussir à passez les tests de jnews.
+                                Seulement avec des tests postés sur le forum et une implémentation d'une classe client pour compiler ces tests j'ai vaguement
+                                réussie à faire cet exercice.
+                            </p>
+                            <p>
+                                Grâce à ces exercices je pense avoir compris le pattern et la signification des méthodes visite() et accepter() et leurs puissance.
+                                Malheuresement je ne pense pas être capable d'écrire de zero toute la structure intégrant ces méthode là.
+                                Peut être un autre exercice sur les pattern où c'est à nous d'écrire la totalité du code sera de valeur ajouté.
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    </p>
+                </div>
+
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+
+{%   endblock content %}

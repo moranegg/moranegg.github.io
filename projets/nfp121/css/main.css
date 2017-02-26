@@ -1,0 +1,50 @@
+
+body {
+    padding-top: 50px;
+    font-size: 14px;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+
+
+h2 {
+    color: #31708f;
+    margin-bottom: 5%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+h3 {
+    color: #31708f;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+hr {
+    margin: 15px 0 15px 0;
+}
+.table {
+    margin-bottom: 7%;
+}
+.sources {
+    margin-bottom: 7%;
+}
+.panel-primary {
+    border-color: #31708f;
+}
+.panel-primary .panel-heading{
+    background-color: #31708f;
+    border-color: #31708f;
+}
+.btn-info{
+    width: 15em;
+    margin: 1%;
+}
+.sources{
+    float: left;
+}

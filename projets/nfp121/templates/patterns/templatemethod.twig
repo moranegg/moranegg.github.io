@@ -1,0 +1,117 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >TEMPLATE METHOD </h2>
+                    <p>
+                        l'objectif  du pattern TEMPLATE METHOD est d'implémenter un algorithme dans une méthode, laissant à d'autres classes
+                        le soin de définir certaines étapes de l'algorithme.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-left">
+                    <h3> Template method contient l'algorithme </h3>
+                    <img src="../images/templatemethod.gif" />
+
+
+                </div>
+                <div class="col-md-6 text-left">
+                    <h3>Exemples : Préparation de thé ou de café</h3>
+                    <p> Les méthodes brew() et addCondiments() sont implémentées dans les sous-classes Tea et Coffee</p>
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>abstract</span> <span style='font-weight:bold;color:#7B0052;'>class</span> CaffeineBeverage <span style='font-weight:bold;color:#D3171B'>{</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>final</span> <span style='font-weight:bold;color:#7B0052;'>void</span> prepareRecipe() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    boilWater();
+                    brew();
+                    pourInCup();
+                    addCondiments();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>abstract</span> <span style='font-weight:bold;color:#7B0052;'>void</span> brew();
+
+                    <span style='font-weight:bold;color:#7B0052;'>abstract</span> <span style='font-weight:bold;color:#7B0052;'>void</span> addCondiments();
+
+                    <span style='font-weight:bold;color:#7B0052;'>void</span> boilWater() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    System.out.println(<span style='color:#2A00FF'>"Boiling water"</span>);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>void</span> pourInCup() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    System.out.println(<span style='color:#2A00FF'>"Pouring into cup"</span>);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+                    <h3> La comparaison</h3>
+
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> Duck <span style='font-weight:bold;color:#7B0052;'>implements</span> Comparable&lt;Duck&gt; <span style='font-weight:bold;color:#D3171B'>{</span>
+                    String name;
+                    <span style='font-weight:bold;color:#7B0052;'>int</span> weight;
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> Duck(String name, <span style='font-weight:bold;color:#7B0052;'>int</span> weight) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    this.name = name;
+                    this.weight = weight;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> String toString() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> name + <span style='color:#2A00FF'>" weighs "</span> + weight;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>int</span> compareTo(Duck object) <span style='font-weight:bold;color:#D3171B'>{</span>
+
+                    Duck otherDuck = object;
+
+                    <span style='font-weight:bold;color:#7B0052;'>if</span> (this.weight &lt; otherDuck.weight) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> -1;
+                    <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#7B0052;'>if</span> (this.weight == otherDuck.weight) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> 0;
+                    <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#D3171B'>{</span> <span style='color:#3F7F5F'>// this.weight &gt; otherDuck.weight
+</span>			<span style='font-weight:bold;color:#7B0052;'>return</span> 1;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>import</span> java.util.Arrays;
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> DuckSortTestDrive <span style='font-weight:bold;color:#D3171B'>{</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>static</span> <span style='font-weight:bold;color:#7B0052;'>void</span> main(String[] args) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    Duck[] ducks = <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>new</span> Duck(<span style='color:#2A00FF'>"Daffy"</span>, 8),
+                    <span style='font-weight:bold;color:#7B0052;'>new</span> Duck(<span style='color:#2A00FF'>"Dewey"</span>, 2),
+                    <span style='font-weight:bold;color:#7B0052;'>new</span> Duck(<span style='color:#2A00FF'>"Howard"</span>, 7),
+                    <span style='font-weight:bold;color:#7B0052;'>new</span> Duck(<span style='color:#2A00FF'>"Louie"</span>, 2),
+                    <span style='font-weight:bold;color:#7B0052;'>new</span> Duck(<span style='color:#2A00FF'>"Donald"</span>, 10),
+                    <span style='font-weight:bold;color:#7B0052;'>new</span> Duck(<span style='color:#2A00FF'>"Huey"</span>, 2)
+                    <span style='font-weight:bold;color:#D3171B'>}</span>;
+
+                    System.out.println(<span style='color:#2A00FF'>"Before sorting:"</span>);
+                    display(ducks);
+
+                    Arrays.sort(ducks);
+
+                    System.out.println(<span style='color:#2A00FF'>"\nAfter sorting:"</span>);
+                    display(ducks);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>static</span> <span style='font-weight:bold;color:#7B0052;'>void</span> display(Duck[] ducks) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>for</span> (Duck d : ducks) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    System.out.println(d);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+                </div>
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+
+
+
+{% endblock content %}

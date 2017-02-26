@@ -1,0 +1,242 @@
+{%  extends 'main.twig' %}
+
+    {% block content %}
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >NFP 121 - TP1 : L'environnement de programmation BlueJ</h2>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-5">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Nom
+                            </td>
+                            <td>GRUENPETER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Prénom
+                            </td>
+                            <td>Morane Otilia
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Matricule
+                            </td>
+                            <td>100055662
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-4 ">
+                </div>
+                <div class="col-md-3 sources hidden-xs">
+                    <h2> Les sources </h2>
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 1</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <p>  Le livre "Objects first with Java" est un livre très pratique que je connaissais avant le
+                                cours qui m'a beaucoup aidé pendant la découverte des notions de programmation orienté objets.
+
+                                Le premier exercice est facile et ludique, il permet aux utilisateurs qui ne connaissent pas blueJ une introduction agréable.
+                            </p>
+                            Les concepts de l'exercice sont plûtot orienté création d'instance:
+                            <ul>
+                                <li>La création d’une instance de chaque classe </li>
+                                <li>La création de deux instances de la même classe en changeant leurs paramètres </li>
+                                <li>L’invocation de méthode sur les instances qui permet de changer leur couleur, taille, emplacement et visibilité sur le Canvas.</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 sources">
+
+                    <a href="question1/Square.java"> <button type="button" class="btn btn-info">Question 1 : square</button></a>
+                    <a href="question1/Circle.java"> <button type="button" class="btn btn-info">Question 1 : circle</button></a>
+                    <a href="question1/Triangle.java"> <button type="button" class="btn btn-info">Question 1 : triangle</button></a>
+                    <a href="question1/Canvas.java"> <button type="button" class="btn btn-info">Question 1 : canvas</button></a>
+                </div>
+            </div><!--end row -->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 2</h3>
+                        </div>
+                        <div class="panel-body">
+                            Cet exercice aussi très clair permet d'écrire un nouveau paramètre directement dans la classe
+                            Picture et de le dessiner avec les autres paramètres dans le construceteur.
+                            Par ailleurs,la création d'une nouvelle méthode ,sunset(), permet d'animé le dessin avec un couché du soleil.
+                            <br />
+                            Ci dessous la méthode d'animation du soleil:
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Animates&nbsp;the&nbsp;blue&nbsp;sun&nbsp;and&nbsp;makes&nbsp;it&nbsp;sunset&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;sunset(){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>&nbsp;(sun&nbsp;!=&nbsp;<strong><font color='#7f0055'>null</font></strong>)&nbsp;{<font color='#3f7f5f'>//&nbsp;only&nbsp;if&nbsp;it's&nbsp;painted&nbsp;already...
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sun.slowMoveVertical(500);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 sources">
+
+                    <a href="question2/Picture.java"> <button type="button" class="btn btn-info">Question 2 : picture</button></a>
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 3</h3>
+                        </div>
+                        <div class="panel-body">
+                            Cet Exercice était plus intéressant. Celui-ci était un petit rappel de la javadoc et des utilisations de l’objet String.
+                            <br />
+                            Premièrement il fallait ajouter les getters de la classes auditeurCNAM, copiés ci-dessous :
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Lecture&nbsp;du&nbsp;nom&nbsp;de&nbsp;l'auditeur.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@return</strong>&nbsp;son&nbsp;nom
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;String&nbsp;nom()&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;<strong><font color='#7f0055'>this</font></strong>.nom;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Lecture&nbsp;du&nbsp;prénom&nbsp;de&nbsp;l'auditeur.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@return</strong>&nbsp;son&nbsp;prénom
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;String&nbsp;prenom()&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;<strong><font color='#7f0055'>this</font></strong>.prenom;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Lecture&nbsp;du&nbsp;matricule&nbsp;de&nbsp;l'auditeur.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@return</strong>&nbsp;son&nbsp;matricule
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;String&nbsp;matricule()&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;<strong><font color='#7f0055'>this</font></strong>.matricule;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+
+                            Après, la construction d'un paramètre login et le test des craractèters qui constitue cet élément.
+                            Au départ je ne savais pas comment trouver tous les accents sans oublier quelques uns et j'ai décider d'utiliser
+                            la méthode replaceAll() pour chaque caractère spécial de la manière ci-dessous, malheuresement
+                            Je ne pense pas que c'est la meilleur manière de procéder, créer une méthode qui s'occupe seulement de changer les caractères accentués aurait été plus optimiser et organiser.
+
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'><font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;le&nbsp;login&nbsp;au&nbsp;Cnam&nbsp;:&nbsp;6&nbsp;premières&nbsp;lettres&nbsp;du&nbsp;nom&nbsp;suivies&nbsp;de&nbsp;la&nbsp;première
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;lettre&nbsp;du&nbsp;prénom&nbsp;séparées&nbsp;de&nbsp;'_'&nbsp;.&nbsp;le&nbsp;login&nbsp;retourné&nbsp;est&nbsp;en&nbsp;minuscules,
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;le&nbsp;trait&nbsp;d'union,&nbsp;ou&nbsp;spéciaux&nbsp;<i>(pour&nbsp;unix)</i>&nbsp;sont&nbsp;remplacés&nbsp;par&nbsp;des
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;'_'&nbsp;pas&nbsp;de&nbsp;caractères&nbsp;accentués&nbsp;pour&nbsp;le&nbsp;login&nbsp;voir&nbsp;les&nbsp;classes
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;prédéfines,&nbsp;java.lang.String&nbsp;:&nbsp;les&nbsp;méthodes&nbsp;replaceAll,&nbsp;toLowerCase&nbsp;et
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;substring&nbsp;java.lang.Math&nbsp;:&nbsp;la&nbsp;méthode&nbsp;min<br>
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<b>BlueJ&nbsp;:&nbsp;Menu&nbsp;Aide</b>
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@return</strong>&nbsp;le&nbsp;login&nbsp;du&nbsp;Cnam&nbsp;simplifié,&nbsp;sans&nbsp;les&nbsp;adaptations&nbsp;dues&nbsp;aux
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;homonymes...
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;String&nbsp;login()&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;login;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//construire&nbsp;&nbsp;login
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>(<strong><font color='#7f0055'>this</font></strong>.nom.length()&nbsp;>6){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;(<strong><font color='#7f0055'>this</font></strong>.nom.substring(0,6)+<font color='#2a00ff'>'_'</font>+&nbsp;<strong><font color='#7f0055'>this</font></strong>.prenom.charAt(0));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<strong><font color='#7f0055'>else</font></strong>{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;(<strong><font color='#7f0055'>this</font></strong>.nom+<font color='#2a00ff'>'_'</font>+&nbsp;<strong><font color='#7f0055'>this</font></strong>.prenom.charAt(0));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;changer&nbsp;login&nbsp;en&nbsp;minuscules
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.toLowerCase();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//changer&nbsp;caractères&nbsp;spéciaux&nbsp;
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"-"</font>,&nbsp;<font color='#2a00ff'>"_"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"&nbsp;"</font>,&nbsp;<font color='#2a00ff'>"_"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"\"</font><font color='#2a00ff'>",&nbsp;"</font>_");
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"\'"</font>,&nbsp;<font color='#2a00ff'>"_"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"<i>"</font>,<font color='#2a00ff'>"_"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"</i>"</font>,<font color='#2a00ff'>"_"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"ù"</font>,&nbsp;<font color='#2a00ff'>"u"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"û"</font>,&nbsp;<font color='#2a00ff'>"u"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"ü"</font>,&nbsp;<font color='#2a00ff'>"u"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"à"</font>,&nbsp;<font color='#2a00ff'>"a"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"â"</font>,&nbsp;<font color='#2a00ff'>"a"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"æ"</font>,&nbsp;<font color='#2a00ff'>"ae"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"é"</font>,&nbsp;<font color='#2a00ff'>"e"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"è"</font>,&nbsp;<font color='#2a00ff'>"e"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"ê"</font>,&nbsp;<font color='#2a00ff'>"e"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"ë"</font>,&nbsp;<font color='#2a00ff'>"e"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"ï"</font>,&nbsp;<font color='#2a00ff'>"i"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"î"</font>,&nbsp;<font color='#2a00ff'>"i"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"ô"</font>,&nbsp;<font color='#2a00ff'>"o"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"œ"</font>,&nbsp;<font color='#2a00ff'>"oe"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"ÿ"</font>,&nbsp;<font color='#2a00ff'>"y"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login&nbsp;=&nbsp;login.replaceAll(<font color='#2a00ff'>"ç"</font>,&nbsp;<font color='#2a00ff'>"c"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;login&nbsp;;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+
+
+                            <p>
+                                Dans le processus de création de la méthode, je l'ai testé avec les tests unitaires. très rapidement j'ai constaté que ma méthode n'est
+                                pas suffisament clair et est très difficile à maintenir.
+                                <br />
+                                Par ailleurs j'ai écris un test unitaire qui représantait l'erreur que j'avais sur JNEWS.
+
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 sources">
+
+                    <a href="question3/auditeurCNAM.java"> <button type="button" class="btn btn-info">Question 3 : auditeurCNAM</button></a>
+                    <a href="question3/auditeurCNAMTest.java"> <button type="button" class="btn btn-info">Question 3 : auditeurCNAMTest</button></a>
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-left">Conclusion, bibliographie et remarques :</h3>
+                        </div>
+                        <div class="panel-body text-left">
+                            Une première utilisation des outils du cours NFP121 et rappel des concepts de base. Ce TP m'a permis de me remettre
+                            à coder en Java sur BlueJ qui est un logiciel très facile à manipuler.
+                        </div>
+                    </div>
+
+
+
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    </div><!--starter template-->
+
+    </div><!-- /.container -->
+{%   endblock content %}

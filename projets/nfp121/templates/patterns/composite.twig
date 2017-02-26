@@ -1,0 +1,171 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="starter-template">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h2 >COMPOSITE </h2>
+                <p>
+                    l'objectif  du pattern COMPOSITE est de permettre aux clients de traiter de façon uniforme des objets
+                    indivisuels et des compositions d'objets.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 text-left">
+                <h3> L'arborescence d'objets </h3>
+                <img src="composite.gif" />
+                <br />
+                <h3> Le plus petit composite- la feuille</h3>
+                <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> MenuItem <span style='font-weight:bold;color:#7B0052;'>extends</span> MenuComponent <span style='font-weight:bold;color:#D3171B'>{</span>
+                String name;
+                String description;
+                <span style='font-weight:bold;color:#7B0052;'>boolean</span> vegetarian;
+                <span style='font-weight:bold;color:#7B0052;'>double</span> price;
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> MenuItem(String name,
+                String description,
+                <span style='font-weight:bold;color:#7B0052;'>boolean</span> vegetarian,
+                <span style='font-weight:bold;color:#7B0052;'>double</span> price)
+                <span style='font-weight:bold;color:#D3171B'>{</span>
+                this.name = name;
+                this.description = description;
+                this.vegetarian = vegetarian;
+                this.price = price;
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> String getName() <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>return</span> name;
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> String getDescription() <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>return</span> description;
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>double</span> getPrice() <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>return</span> price;
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>boolean</span> isVegetarian() <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>return</span> vegetarian;
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> print() <span style='font-weight:bold;color:#D3171B'>{</span>
+                System.out.print(<span style='color:#2A00FF'>"  "</span> + getName());
+                <span style='font-weight:bold;color:#7B0052;'>if</span> (isVegetarian()) <span style='font-weight:bold;color:#D3171B'>{</span>
+                System.out.print(<span style='color:#2A00FF'>"(v)"</span>);
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+                System.out.println(<span style='color:#2A00FF'>", "</span> + getPrice());
+                System.out.println(<span style='color:#2A00FF'>"     -- "</span> + getDescription());
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+                <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                <h3> Chez le client</h3>
+                <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> Client <span style='font-weight:bold;color:#D3171B'>{</span>
+                MenuComponent allMenus;
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> Client(MenuComponent allMenus) <span style='font-weight:bold;color:#D3171B'>{</span>
+                this.allMenus = allMenus;
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> printMenu() <span style='font-weight:bold;color:#D3171B'>{</span>
+                allMenus.print();
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+                <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+            </div>
+            <div class="col-md-6 ">
+                <h3>Exemples : MenuComponent la classe abstraite</h3>
+                <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>abstract</span> <span style='font-weight:bold;color:#7B0052;'>class</span> MenuComponent <span style='font-weight:bold;color:#D3171B'>{</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> add(MenuComponent menuComponent) <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> UnsupportedOperationException();
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> remove(MenuComponent menuComponent) <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> UnsupportedOperationException();
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+                <span style='font-weight:bold;color:#7B0052;'>public</span> MenuComponent getChild(<span style='font-weight:bold;color:#7B0052;'>int</span> i) <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> UnsupportedOperationException();
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> String getName() <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> UnsupportedOperationException();
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+                <span style='font-weight:bold;color:#7B0052;'>public</span> String getDescription() <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> UnsupportedOperationException();
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>double</span> getPrice() <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> UnsupportedOperationException();
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>boolean</span> isVegetarian() <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> UnsupportedOperationException();
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> print() <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> UnsupportedOperationException();
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+                <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                <h3> Menu le composite qui contient des feuilles </h3>
+                <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>import</span> java.util.Iterator;
+                <span style='font-weight:bold;color:#7B0052;'>import</span> java.util.ArrayList;
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> Menu <span style='font-weight:bold;color:#7B0052;'>extends</span> MenuComponent <span style='font-weight:bold;color:#D3171B'>{</span>
+                ArrayList&lt;MenuComponent&gt; menuComponents = <span style='font-weight:bold;color:#7B0052;'>new</span> ArrayList&lt;MenuComponent&gt;();
+                String name;
+                String description;
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> Menu(String name, String description) <span style='font-weight:bold;color:#D3171B'>{</span>
+                this.name = name;
+                this.description = description;
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> add(MenuComponent menuComponent) <span style='font-weight:bold;color:#D3171B'>{</span>
+                menuComponents.add(menuComponent);
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> remove(MenuComponent menuComponent) <span style='font-weight:bold;color:#D3171B'>{</span>
+                menuComponents.remove(menuComponent);
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> MenuComponent getChild(<span style='font-weight:bold;color:#7B0052;'>int</span> i) <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>return</span> (MenuComponent)menuComponents.get(i);
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> String getName() <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>return</span> name;
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> String getDescription() <span style='font-weight:bold;color:#D3171B'>{</span>
+                <span style='font-weight:bold;color:#7B0052;'>return</span> description;
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> print() <span style='font-weight:bold;color:#D3171B'>{</span>
+                System.out.print(<span style='color:#2A00FF'>"\n"</span> + getName());
+                System.out.println(<span style='color:#2A00FF'>", "</span> + getDescription());
+                System.out.println(<span style='color:#2A00FF'>"---------------------"</span>);
+
+                Iterator&lt;MenuComponent&gt; iterator = menuComponents.iterator();
+                <span style='font-weight:bold;color:#7B0052;'>while</span> (iterator.hasNext()) <span style='font-weight:bold;color:#D3171B'>{</span>
+                MenuComponent menuComponent =
+                (MenuComponent)iterator.next();
+                menuComponent.print();
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+                <span style='font-weight:bold;color:#D3171B'>}</span>
+                <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+
+            </div>
+        </div>
+        <div class="row text-left">
+            <h3> En swing: </h3>
+            <img src="../images/swing.png" alt="https://www.clear.rice.edu/comp212/00-spring/tutorials/04/graphics.html"/>
+
+
+        </div>
+
+    </div><!--starter template-->
+
+</div><!-- /.container -->
+
+{% endblock content %}

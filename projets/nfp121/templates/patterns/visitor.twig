@@ -1,0 +1,182 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+      <div class="starter-template">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h2 >VISITOR </h2>
+					<p>
+					l'objectif  du pattern VISITOR est de
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3> L'adaptateur d'objet </h3>
+					<img src="../images/visitor.jpg" />
+					<br />
+					<h3> L'adaptateurs de classe </h3>
+					<img src="../images/visitor_sequence.gif" />
+					<br />
+					<p>
+							La visite est possible grâce à une méthode générique dans les objets : <br/>
+							<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> &lt;T&gt; T accepter(VisiteurExpression&lt;T&gt; v) <span style='font-weight:bold;color:#D3171B'>{</span>
+		<span style='font-weight:bold;color:#7B0052;'>return</span> v.visite(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+	<span style='font-weight:bold;color:#D3171B'>}</span></pre>
+							Dans le visiteur le type générique T est défini (par exemple pour la valuation il me fallait un  type Integer
+							par contre à l'affichage où il me fallait un type String). Puis les différente méthode de visite pour chaque classe
+							qui détermine le résultat d'une telle visite.
+							</p>
+
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-12 ">
+					<h3>Exemples :</h3>
+				<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>package</span> question1;
+<span style='color:#3F5FBF'>/**
+ * La classe VisiteurEvaluation permet de parcourir un arbre d'expressions et de retourner la valeur totales
+ * de ses expressions.
+ */</span>
+<span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> VisiteurEvaluation <span style='font-weight:bold;color:#7B0052;'>extends</span> VisiteurParDefaut&lt;Integer&gt; <span style='font-weight:bold;color:#D3171B'>{</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>private</span> Contexte c;
+    <span style='color:#3F5FBF'>/**
+     * constructeur du VisiteurEvaluation avec un contexte c (représente la mémoire)
+     */</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> VisiteurEvaluation(Contexte c) <span style='font-weight:bold;color:#D3171B'>{</span>
+        this.c = c;
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une constante c
+     * @return la valeur de cette Constante
+     */</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Constante c) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> c.valeur();
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une variable v
+     * @return la valeur de cette Variable
+     */</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Variable v) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> this.c.lire(v.nom());
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une Division d
+     * @return la valeur de cette Division
+     */</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Division d) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span>  d.op1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) / d.op2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une Addition a
+     * @return la valeur de cette Addition
+     */</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Addition a) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> a.op1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) + a.op2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une Multiplication m
+     * @return la valeur de cette Multiplication
+     */</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Multiplication m) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span>  m.op1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) * m.op2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * La méthode de visite d'une Soustraction s
+     * @return la valeur de cette Soustraction
+     */</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Integer visite(Soustraction s) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span>  s.op1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) - s.op2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * Le getter du contexte de ce visiteur
+     * @return Contexte du visiteur
+     */</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Contexte contexte() <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> c;
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+<span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>package</span> question2;
+
+<span style='font-weight:bold;color:#7B0052;'>import</span> question1.VisiteurExpression;
+
+<span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> VisiteurBoolEvaluation <span style='font-weight:bold;color:#7B0052;'>extends</span> VisiteurExpressionBooleenne&lt;Boolean&gt; <span style='font-weight:bold;color:#D3171B'>{</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>private</span> VisiteurExpression&lt;Integer&gt; ve;
+
+    <span style='font-weight:bold;color:#7B0052;'>public</span> VisiteurBoolEvaluation(VisiteurExpression&lt;Integer&gt; ve) <span style='font-weight:bold;color:#D3171B'>{</span>
+        this.ve = ve;
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Vrai v) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>true</span>;
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Faux f) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>false</span>;
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Non n) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> ! n.bop().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Ou ou) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span>  ou.bop1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) || ou.bop2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Et et) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> et.bop1().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>) && et.bop2().accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Sup sup) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> sup.op1().accepter(ve) &gt; sup.op2().accepter(ve);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Egal eg) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> eg.op1().accepter(ve) == eg.op2().accepter(ve);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Inf inf) <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> inf.op1().accepter(ve) &lt; inf.op2().accepter(ve);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+<span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+					<h3> Chez le client</h3>
+
+					<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> testVisiteurEvaluation()<span style='font-weight:bold;color:#D3171B'>{</span>
+        Expression expr = <span style='font-weight:bold;color:#7B0052;'>new</span> Addition(<span style='font-weight:bold;color:#7B0052;'>new</span> Constante(3), <span style='font-weight:bold;color:#7B0052;'>new</span> Constante(2));
+        assertTrue(expr.accepter(ve)==5);
+        expr = <span style='font-weight:bold;color:#7B0052;'>new</span> Addition(<span style='font-weight:bold;color:#7B0052;'>new</span> Constante(1), <span style='font-weight:bold;color:#7B0052;'>new</span> Constante(2));
+        assertTrue(expr.accepter(ve)==3);
+        expr = <span style='font-weight:bold;color:#7B0052;'>new</span> Multiplication(<span style='font-weight:bold;color:#7B0052;'>new</span> Constante(3), <span style='font-weight:bold;color:#7B0052;'>new</span> Constante(5));
+        assertTrue(expr.accepter(ve)==15);
+        expr = <span style='font-weight:bold;color:#7B0052;'>new</span> Division(<span style='font-weight:bold;color:#7B0052;'>new</span> Constante(6), <span style='font-weight:bold;color:#7B0052;'>new</span> Constante(2));
+        assertTrue(expr.accepter(ve)==3);
+
+    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+				</div>
+			</div>
+		</div>
+	</div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+
+
+{% endblock content %}

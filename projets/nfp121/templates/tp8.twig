@@ -1,0 +1,310 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >NFP 121 - TP 8 : Pattern Décorateur</h2>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-5">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Nom
+                            </td>
+                            <td>GRUENPETER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Prénom
+                            </td>
+                            <td>Morane Otilia
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Matricule
+                            </td>
+                            <td>100055662
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-4 ">
+                </div>
+                <div class="col-md-3 sources hidden-xs">
+                    <h2> Les sources </h2>
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 1 : Une applette à compléter : une PIZZA cela se décore !!!</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <p>
+                                Une première utilisation du pattern décorateur juste pour compléter l'aplette de composition et d'achat de pizza.
+                                Chaque choix qui est fait par l'utilisateur décore la pizza avec des ingrédients et est sauvegardé dans un éléments décoré
+                                "pizza".
+                            </p>
+                            <p> Dans cette question les seules modifications à aporter sont dans les action listener => action performed. Avec le choix de la pizza
+                                et le choix des ingrédiants à ajouter :</p>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'>boutonSolo.addActionListener(
+                            <span style='font-weight:bold;color:#7B0052;'>new</span> ActionListener()<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> actionPerformed(ActionEvent ae)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            pizza = <span style='font-weight:bold;color:#7B0052;'>new</span> PizzaSolo();
+                            validerLesDécorations();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>);</pre>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'>parmesan.addItemListener(<span style='font-weight:bold;color:#7B0052;'>new</span> ItemListener()<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> itemStateChanged(ItemEvent ie)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(ie.getStateChange()==ItemEvent.SELECTED)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            pizza = <span style='font-weight:bold;color:#7B0052;'>new</span> Parmesan(pizza);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            afficherLaPizzaEtSonCoût();
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#D3171B'>}</span>);</pre>
+
+                        </div><!--end panel body-->
+                    </div>
+                </div>
+                <div class="col-md-3 sources">
+
+                    <a href="question1/PizzaStore.java"> <button type="button" class="btn btn-info">PizzaStore</button></a>
+
+
+
+
+                </div>
+            </div><!--end row -->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 2: Complétez l'architecture</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p> La question 2.1 présente une architecture qui implémente déjà le pattern décorateur, à laquelle il fallait ajouter la boisson
+                                Chocolat (qui est un objet de base qui peut être décoré). Dans la question 2.2 il fallait ajouter le condiment "sucre de betteraves" (qui est un
+                                objet décorateur). Les deux sont des composants qui hérite de boisson, le condiment hérite aussi de la classe abstraite des décorateurs "CondimentDecorator".
+                                Chaque objet implémente la méthode cost(). Le décorateur utilise dans son constructeur et dans toutes les méthodes
+                                l'appel super pendant son exécution.
+                            </p>
+
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='color:#3F5FBF'>/**
+ * extrait de http://www.oreilly.com/catalog/hfdesignpat/
+ * Chocolate is a beverage that costs by itself 2.10$.
+ */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> Chocolate <span style='font-weight:bold;color:#7B0052;'>extends</span> Beverage<span style='font-weight:bold;color:#D3171B'>{</span>
+ <span style='color:#3F5FBF'>/**
+  * Constructor of Chocolate by giving it it's description.
+  */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> Chocolate()<span style='font-weight:bold;color:#D3171B'>{</span>
+                            description = <span style='color:#2A00FF'>"Chocolate"</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+ <span style='color:#3F5FBF'>/**
+  * Methode cost.
+  * @return cost of Chocolate
+  */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>double</span> cost()<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> 2.10;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='color:#3F5FBF'>/**
+ * extrait de http://www.oreilly.com/catalog/hfdesignpat/
+ * BeetSugar is a condiment for Bevarege.
+ */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span>  <span style='font-weight:bold;color:#7B0052;'>class</span> BeetSugar  <span style='font-weight:bold;color:#7B0052;'>extends</span> CondimentDecorator  <span style='font-weight:bold;color:#D3171B'>{</span>
+    <span style='color:#3F5FBF'>/**
+     * Constructor that needs a beverage to be created, and id defined with super.
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> BeetSugar(Beverage beverage)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>super</span>(beverage);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+    <span style='color:#3F5FBF'>/**
+     * @return the description of super with the actual decorator
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> String getDescription()<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> super.getDescription()+<span style='color:#2A00FF'>", Beet Sugar"</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+    <span style='color:#3F5FBF'>/**
+     * @return cost of super with cost of condiment.
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>double</span> cost()<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> 0.1 + super.cost();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                            <p>Pour La question 2.3 la méthode toString de la classe Beverage utilise les méthodes getDescription() et cost()
+                                pour afficher les boissons et leurs prix avec ou sans décorateur.
+                            </p>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> String toString()<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> this.getDescription() +<span style='color:#2A00FF'>" $"</span>+ this.cost();
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                        </div><!--end panel body-->
+                    </div>
+
+
+                </div>
+                <div class="col-md-3 sources">
+                    <a href="question2/Chocolate.java"> <button type="button" class="btn btn-info">Chocolate</button></a>
+                    <a href="question2/BeetSugar.java"> <button type="button" class="btn btn-info">BeetSugar</button></a>
+                    <a href="question2/Beverage.java"> <button type="button" class="btn btn-info">Beverage</button></a>
+
+
+                </div>
+
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 3: Unicité et CondimentDécorator de la question2</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                Avec l'unicité vérifiée à l'exécution, le constructeur du décorateur 'IrishWhisky' est le même avec un appel de super.
+                                Puis à l'exécution une vérification si super contient d'autre condiment Whiskey, si oui rien est fait, sinon les paramètres du
+                                condiment sont ajoutés.
+
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='color:#3F5FBF'>/**
+ * Irish Whisky is a condiment that can be added only once to a beverage.
+ * This will be done only when executing all decorations of Irish Whisky will be counted as
+ * if only one was added.
+ */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> IrishWhisky <span style='font-weight:bold;color:#7B0052;'>extends</span> CondimentDecorator<span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> IrishWhisky(Beverage beverage) <span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>super</span>(beverage);
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+    <span style='color:#3F5FBF'>/**
+     * if super doesn't have Irish Whisky in it, the description of this Irish Whisky is added
+     * to description.
+     * @return description of beverage
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> String getDescription() <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(super.getDescription().contains(<span style='color:#2A00FF'>"Irish Whisky"</span>))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span>  super.getDescription();
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>else</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span>  super.getDescription() + <span style='color:#2A00FF'>", Irish Whisky"</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+    <span style='color:#3F5FBF'>/**
+     * If super doesn't have another Whiskey in it, the cost of this Irish Whisky is added.
+     * @return cost
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>double</span> cost() <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(super.getDescription().contains(<span style='color:#2A00FF'>"Irish Whisky"</span>))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span>  super.cost();
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>else</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> super.cost() + 1.0;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+                            </p>
+                        </div><!--end panel body-->
+                    </div>
+
+
+                </div>
+                <div class="col-md-3 sources">
+
+
+                    <a href="question3/IrishWhisky.java"> <button type="button" class="btn btn-info"> IrishWhisky</button></a>
+                    <a href="question3/IrishWhiskyTest.java"> <button type="button" class="btn btn-info">IrishWhiskyTest </button></a>
+
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 4: Unicité et CondimentDécorator de la question2</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                La classe UpperCaseInputStream  est un des décorateurs possibles de FilterInputStream.Celle-ci transforme en Majuscule tous
+                                les caractères du fichier transmis en paramètre en rediffinisant les méthodes read() qu'elle hérite dans lesquelles elle utilise
+                                l'appel à super de la classe qu'ell décore.
+
+                            </p>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> UpperCaseInputStream  <span style='font-weight:bold;color:#7B0052;'>extends</span> FilterInputStream<span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> UpperCaseInputStream(InputStream in)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>super</span>(in);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+    <span style='color:#3F5FBF'>/**
+     * Redefinition of read() method while changing input to upper case
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>int</span> read() <span style='font-weight:bold;color:#7B0052;'>throws</span> IOException<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>int</span> c = super.read();
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(c != -1)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> Character.toUpperCase((<span style='font-weight:bold;color:#7B0052;'>char</span>) c);
+                            <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> c;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>int</span> read(byte[] b, <span style='font-weight:bold;color:#7B0052;'>int</span> off, <span style='font-weight:bold;color:#7B0052;'>int</span> len) <span style='font-weight:bold;color:#7B0052;'>throws</span> IOException<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>int</span> c= super.read(b, off,len);
+                            <span style='font-weight:bold;color:#7B0052;'>for</span>(<span style='font-weight:bold;color:#7B0052;'>int</span> i = off; i&lt;off+c; i++)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            b[i] = (<span style='font-weight:bold;color:#7B0052;'>byte</span>)Character.toUpperCase((<span style='font-weight:bold;color:#7B0052;'>char</span>)b[i]);
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> c;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                        </div><!--end panel body-->
+                    </div>
+
+
+                </div>
+                <div class="col-md-3 sources">
+
+
+                    <a href="question4/UpperCaseInputStream.java"> <button type="button" class="btn btn-info"> UpperCaseInputStream</button></a>
+                    <a href="question4/UpperCaseInputStreamTest.java"> <button type="button" class="btn btn-info">UpperCaseInputStreamTest </button></a>
+
+
+                </div>
+            </div><!--end row-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-left">Conclusion, bibliographie et remarques :</h3>
+                        </div>
+                        <div class="panel-body text-left">
+                            <p>
+                                Le pattern décorateur est assez facile à utiliser et permet une meuilleure architecture que je ne connaissais pas avant.
+                                En prennant en compte le principe de conception "Les classes doivent être ouvertes à l'extension,
+                                mais fermées à la modification"("Design Patterns: Tête la première"), ce pattern est idéale pour le faire facilement.
+                            </p>
+                            <p>
+                                Ce Tp était plus agréable que son prédécesseur et plus facile à comprendre.
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    </p>
+                </div>
+
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+
+{%   endblock content %}

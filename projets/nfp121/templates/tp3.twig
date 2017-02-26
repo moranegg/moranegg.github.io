@@ -1,0 +1,490 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >NFP 121 - TP3 : Les piles </h2>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-5">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Nom
+                            </td>
+                            <td>GRUENPETER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Prénom
+                            </td>
+                            <td>Morane Otilia
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Matricule
+                            </td>
+                            <td>100055662
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-4 ">
+                </div>
+                <div class="col-md-3 sources hidden-xs">
+                    <h2> Les sources </h2>
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 1</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <p> Quelques modifications dans la classe Pile pour avoir une pile d'objet. Premièrement la modification du constructeur et la modification
+                                de la méthode toString() qui utilise la méthode toString() de la classe Object sur chaque élément de la pile. Par ailleurs, la modification de la méthode dépiler
+                                qui retourne un objet et non pas un entier.
+                            </p>
+
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Constructeur&nbsp;de&nbsp;la&nbsp;pile&nbsp;d'objet&nbsp;d'une&nbsp;taille&nbsp;défini.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@param</strong>&nbsp;taille
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;Pile(<strong><font color='#7f0055'>int</font></strong>&nbsp;taille)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>&nbsp;(taille&nbsp;<&nbsp;0)
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;taille&nbsp;=&nbsp;TAILLE_PAR_DEFAUT;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.zone&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;Object[taille];
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.ptr&nbsp;=&nbsp;0;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;utilise&nbsp;la&nbsp;méthode&nbsp;toString&nbsp;d'un&nbsp;objet&nbsp;et&nbsp;retourne&nbsp;une&nbsp;chaîne&nbsp;de&nbsp;caractères&nbsp;de&nbsp;tous&nbsp;les<br/>&nbsp;éléments&nbsp;de&nbsp;la&nbsp;pile.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@return</strong>&nbsp;String&nbsp;de&nbsp;tous&nbsp;les&nbsp;éléments.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;String&nbsp;toString()&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringBuffer&nbsp;sb&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;StringBuffer(<font color='#2a00ff'>"["</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>for</font></strong>&nbsp;(<strong><font color='#7f0055'>int</font></strong>&nbsp;i&nbsp;=&nbsp;ptr&nbsp;-&nbsp;1;&nbsp;i&nbsp;>=&nbsp;0;&nbsp;i--)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sb.append(zone[i].toString());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>&nbsp;(i&nbsp;>&nbsp;0)
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sb.append(<font color='#2a00ff'>",&nbsp;"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sb.append(<font color='#2a00ff'>"]"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;sb.toString();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div></p>
+                            <p> Dans la Classe de l'applette, ci dessous les modifications pour permettre un affichage des éléments de la pile d'objet.</p>
+                            <p>
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'><strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;actionPerformed(ActionEvent&nbsp;ae)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>&nbsp;(ae.getActionCommand().equals(<font color='#2a00ff'>"empiler"</font>))&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>try</font></strong>&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.empiler(donnee.getText());&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contenu.setText(p.toString());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<strong><font color='#7f0055'>catch</font></strong>&nbsp;(PilePleineException&nbsp;e)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contenu.setText(p.toString()&nbsp;+&nbsp;<font color='#2a00ff'>"&nbsp;estPleine&nbsp;!"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<strong><font color='#7f0055'>catch</font></strong>&nbsp;(NumberFormatException&nbsp;nfe)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contenu.setText(p.toString()&nbsp;+&nbsp;<font color='#2a00ff'>"&nbsp;error&nbsp;:&nbsp;"</font>&nbsp;+&nbsp;nfe.getMessage());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<strong><font color='#7f0055'>else</font></strong>&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>try</font></strong>&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sommet.setText(&nbsp;p.depiler().toString());&nbsp;<font color='#3f7f5f'>//&nbsp;à&nbsp;modiifer
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contenu.setText(p.toString());
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<strong><font color='#7f0055'>catch</font></strong>&nbsp;(PileVideException&nbsp;e)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contenu.setText(p.toString()&nbsp;+&nbsp;<font color='#2a00ff'>"&nbsp;estVide&nbsp;!"</font>);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 sources">
+
+                    <a href="question1/Pile.java"> <button type="button" class="btn btn-info">Question 1 : Pile </button></a>
+                    <a href="question1/UneUtilisation.java"> <button type="button" class="btn btn-info">Question 1 : uneUtilisation </button></a>
+
+                </div>
+            </div><!--end row -->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 2</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p> L'utilisation de différentes structures de données pour le même objectif : la construction d'une pile était très intéressante, surtout
+                                découvrire les différentes méthodes qui existe déjà dans la documentation java. Le contrat déffini par l'interface permet de garder
+                                un code équivalant pour chaque structure de donnée.
+                            </p>
+                            <p> <h4>Pile : la pile standard  de la question 1 avec la structure d'un tableau []<h4></p>
+                            <p><h4> Pile 2 : avec un Stack d'Object </h4>
+                            J"ai repris les méthoded de la <a href='http://docs.oracle.com/javase/7/docs/api/java/util/Stack.html'>classe Stack</a> : pop(), push() et peek(). En plus j'ai utilisé la classe mère de Stack
+                            qui est la <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Vector.html">classe Vector</a> pour les méthodes get() et size().
+
+                            </p>
+                            <p>Au départ je voulais utiliser L'Iterator pour parcourir ma pile or le parcours n'était pas dans un ordre qui convenait au tests
+                                , donc j'ai modifié cette méthode, avec la méthode ci-après:
+                            </p>
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>
+                                    /**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Retourne&nbsp;une&nbsp;représentation&nbsp;en&nbsp;String&nbsp;d'une&nbsp;pile,&nbsp;contenant&nbsp;la
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;représentation&nbsp;en&nbsp;String&nbsp;de&nbsp;chaque&nbsp;élément.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@return</strong>&nbsp;une&nbsp;représentation&nbsp;en&nbsp;String&nbsp;d'une&nbsp;pile
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;String&nbsp;toString()&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;s&nbsp;=&nbsp;<font color='#2a00ff'>"["</font>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iterator&nbsp;it&nbsp;=&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk.iterator();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>while</font></strong>(it.hasNext()){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object&nbsp;o&nbsp;=&nbsp;it.next();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s&nbsp;+=&nbsp;o.toString();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>(it.hasNext()){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s&nbsp;+=&nbsp;<font color='#2a00ff'>","</font>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;s&nbsp;+&nbsp;<font color='#2a00ff'>"]"</font>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Retourne&nbsp;une&nbsp;représentation&nbsp;en&nbsp;String&nbsp;d'une&nbsp;pile,&nbsp;contenant&nbsp;la
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;représentation&nbsp;en&nbsp;String&nbsp;de&nbsp;chaque&nbsp;élément.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@return</strong>&nbsp;une&nbsp;représentation&nbsp;en&nbsp;String&nbsp;d'une&nbsp;pile
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;String&nbsp;toString()&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;s&nbsp;=&nbsp;<font color='#2a00ff'>"["</font>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>for</font></strong>&nbsp;(<strong><font color='#7f0055'>int</font></strong>&nbsp;i&nbsp;=&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk.size()&nbsp;-&nbsp;1;&nbsp;i&nbsp;>=&nbsp;0;&nbsp;i--)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s+=&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk.get(i).toString();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>(i&nbsp;>0){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s+=&nbsp;<font color='#2a00ff'>",&nbsp;"</font>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;s&nbsp;+&nbsp;<font color='#2a00ff'>"]"</font>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            <p>
+                            <h4>Pile 3 : Un Vector d'Object</h4>
+                            Ressemble beaucoup à la pile2 avec un vocabulaire différent; add au lieu de push, remove au lieu de pop...<br/>
+                            Ci-dessous la méthode equals de cette classe avant l'utilisation de la méthode de la question 2.5
+                            </p>
+                            <p class="hide">
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'><strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>boolean</font></strong>&nbsp;equals(Object&nbsp;o)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>(&nbsp;<strong><font color='#7f0055'>this</font></strong>==&nbsp;o&nbsp;){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;<strong><font color='#7f0055'>true</font></strong>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>(!(o&nbsp;<strong><font color='#7f0055'>instanceof</font></strong>&nbsp;Pile3)){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;<strong><font color='#7f0055'>false</font></strong>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pile3&nbsp;p&nbsp;=&nbsp;(Pile3)&nbsp;o;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>(<strong><font color='#7f0055'>this</font></strong>.taille()&nbsp;==&nbsp;p.taille()){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>(<strong><font color='#7f0055'>this</font></strong>.capacite()&nbsp;==&nbsp;p.capacite()){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>boolean</font></strong>&nbsp;estEgale&nbsp;=&nbsp;<strong><font color='#7f0055'>false</font></strong>;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>for</font></strong>&nbsp;(<strong><font color='#7f0055'>int</font></strong>&nbsp;i&nbsp;=&nbsp;<strong><font color='#7f0055'>this</font></strong>.v.size()&nbsp;-&nbsp;1;&nbsp;i&nbsp;>=&nbsp;0;&nbsp;i--)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object&nbsp;tmp&nbsp;=&nbsp;<strong><font color='#7f0055'>this</font></strong>.v.get(i);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>boolean</font></strong>&nbsp;existe&nbsp;=&nbsp;<strong><font color='#7f0055'>false</font></strong>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>for</font></strong>(<strong><font color='#7f0055'>int</font></strong>&nbsp;j&nbsp;=&nbsp;<strong><font color='#7f0055'>this</font></strong>.v.size()&nbsp;-&nbsp;1;&nbsp;j&nbsp;>=&nbsp;0;&nbsp;j--){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>((tmp&nbsp;==&nbsp;p.v.get(i))){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;existe&nbsp;=&nbsp;<strong><font color='#7f0055'>true</font></strong>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>(existe){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;estEgale&nbsp;=&nbsp;<strong><font color='#7f0055'>true</font></strong>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<strong><font color='#7f0055'>else</font></strong>{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;<strong><font color='#7f0055'>false</font></strong>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;<strong><font color='#7f0055'>true</font></strong>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;<strong><font color='#7f0055'>false</font></strong>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            </p>
+                            <p><h4>Pile 4 : liste chaînée de Maillon créés en interne</h4>
+                            Je trouve que cette classe était la plus difficile à comprendre et à implémenter, mais celle-ci
+                            était aussi un bon exemple d'une classe interne et des utilisations possibles d'une clase interne.
+                            </p>
+                            <p class="hide">
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Création&nbsp;d'une&nbsp;pile.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@param</strong>&nbsp;taille
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;la&nbsp;taille&nbsp;de&nbsp;la&nbsp;pile,&nbsp;la&nbsp;taille&nbsp;doit&nbsp;être&nbsp;>&nbsp;0
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;Pile4(<strong><font color='#7f0055'>int</font></strong>&nbsp;taille)&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>&nbsp;(taille&nbsp;<=&nbsp;0)
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;taille&nbsp;=&nbsp;CAPACITE_PAR_DEFAUT;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk&nbsp;=&nbsp;<strong><font color='#7f0055'>null</font></strong>;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.capacite&nbsp;=&nbsp;taille;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Constructeur&nbsp;par&nbsp;défaut.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;Pile4()&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>(CAPACITE_PAR_DEFAUT);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;empiler&nbsp;à&nbsp;la&nbsp;pile&nbsp;un&nbsp;élément&nbsp;en&nbsp;paramètre.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@Param</strong>&nbsp;o
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;objet&nbsp;à&nbsp;empiler&nbsp;dans&nbsp;la&nbsp;pile
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@throw</strong>&nbsp;PilePleineException
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-si&nbsp;ile&nbsp;est&nbsp;pleine,&nbsp;ne&nbsp;peut&nbsp;pas&nbsp;empiler
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;empiler(Object&nbsp;o)&nbsp;<strong><font color='#7f0055'>throws</font></strong>&nbsp;PilePleineException&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>&nbsp;(estPleine())
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>throw</font></strong>&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;PilePleineException();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maillon&nbsp;nouveau&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;Maillon(o,&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk&nbsp;=&nbsp;nouveau;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.nombre++;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;depiler&nbsp;supprime&nbsp;de&nbsp;la&nbsp;pile&nbsp;le&nbsp;dernier&nbsp;objet&nbsp;entré,&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;retourne&nbsp;cet&nbsp;objet.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@return</strong>&nbsp;Object&nbsp;
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@throw</strong>&nbsp;PileVideException
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-si&nbsp;pile&nbsp;n'a&nbsp;aucun&nbsp;élémnet
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;Object&nbsp;depiler()&nbsp;<strong><font color='#7f0055'>throws</font></strong>&nbsp;PileVideException&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>&nbsp;(estVide())
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>throw</font></strong>&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;PileVideException();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maillon&nbsp;tmp&nbsp;=&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk&nbsp;=&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk.suivant;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nombre--;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;tmp.element;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            </p>
+                            <p>
+                            <h4>Tests unitaires et Le couple (equals, hashCode)</h4>
+                            J'ai utilisé les tests déjà déffini pour Pile sur Pile2, Pile3 et Pile4 avec quelques modifications. A ces tests, j'ai ajouté un test
+                            pour les méthodes empiler et dépiler et plusieurs tests pour la méthode equals qui me paraissait la méthode la plus importante à tester.
+                            En premier temps, ma méthode equals retournait vrai, si les deux piles étaient constituées des mêmes éléments pas forcement dans le même ordre.
+                            Plus tard, avec la dcouverte de la méthode qui utilise hashcode pour l'exercice 2_5, j'ai compris qu'il faillait avoir deux piles avec le même ordre.
+                            En plus, dans ma méthode initiale je faisais une vérification si la l'objet était une instance de Pile/Pile2/Pile3/Pile4.
+                            Avec la nouvelle méthode equals, j'ai aprécié la manière avec laquelle une égalité entre deux piles qui ont la même capacité, la même taille et les
+                            mêmes éléments sans être du même type.
+                            Ci-dessous le jeux de tests dans PileAuMemeComportement avant le changement de la méthode equals et celui d'après le changement:
+                            </p>
+                            <p class="hide">
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Ce&nbsp;test&nbsp;passe&nbsp;avec&nbsp;mon&nbsp;implementation&nbsp;de&nbsp;la&nbsp;méthode&nbsp;equals
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Quand&nbsp;j'utilise&nbsp;la&nbsp;méthode&nbsp;fourni&nbsp;en&nbsp;tp3&nbsp;avec&nbsp;l'utilisation&nbsp;du&nbsp;hashcode,&nbsp;les&nbsp;piles&nbsp;de&nbsp;différents&nbsp;type,&nbsp;si&nbsp;elles&nbsp;sont&nbsp;PileI&nbsp;et&nbsp;contiennent
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;les&nbsp;mêmes&nbsp;éléments,&nbsp;elles&nbsp;sont&nbsp;égale
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;test_Pile_equals_adresse()&nbsp;<strong><font color='#7f0055'>throws</font></strong>&nbsp;Exception&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p1.equals(p2));&nbsp;<font color='#3f7f5f'>//car&nbsp;deux&nbsp;instances&nbsp;de&nbsp;type&nbsp;différent
+                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent&nbsp;?&nbsp;"</font>,&nbsp;p1.equals(p3));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p1.equals(p4));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p2.equals(p3));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p2.equals(p4));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p3.equals(p4));
+                                <br/>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1.empiler(3);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1.empiler(2);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1.empiler(1);
+                                <br/>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p2&nbsp;=&nbsp;p1;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1.depiler();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1.depiler();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1.depiler();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1.empiler(4);p1.empiler(5);&nbsp;p1.empiler(6);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p2.empiler(5);p2.empiler(6);&nbsp;p2.empiler(4);
+                                <br/>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;?&nbsp;"</font>,&nbsp;p1.equals(p2));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;?&nbsp;"</font>,&nbsp;p2.equals(p1));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;?&nbsp;"</font>,&nbsp;p1.equals(p1));
+                                <br/>
+                                <br/>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+
+                            </p>
+                            <p class="hide">
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'><font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Ce&nbsp;test&nbsp;passe&nbsp;avec&nbsp;l'implementation&nbsp;de&nbsp;la&nbsp;méthode&nbsp;equals&nbsp;fournie&nbsp;à&nbsp;la&nbsp;question&nbsp;2_5
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;test_Pile_equals_adresse_PileI()&nbsp;<strong><font color='#7f0055'>throws</font></strong>&nbsp;Exception&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p1.equals(p2));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent&nbsp;?&nbsp;"</font>,&nbsp;p1.equals(p3));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p1.equals(p4));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p2.equals(p3));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p2.equals(p4));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p3.equals(p4));
+                                <br/>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1.empiler(3);p1.empiler(2);&nbsp;p1.empiler(1);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p2.empiler(3);p2.empiler(2);&nbsp;p2.empiler(1);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p3.empiler(3);p3.empiler(2);&nbsp;p3.empiler(1);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p4.empiler(3);p4.empiler(2);&nbsp;p4.empiler(1);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p1.equals(p2));&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent&nbsp;?&nbsp;"</font>,&nbsp;p1.equals(p3));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p1.equals(p4));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p2.equals(p3));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p2.equals(p4));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p3.equals(p4));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Ce&nbsp;test&nbsp;vérifi&nbsp;si&nbsp;l'égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;est&nbsp;l'égalité&nbsp;de&nbsp;l'ordre&nbsp;des&nbsp;éléments&nbsp;qu'elle&nbsp;contient
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;test_Pile_equals_ordre()&nbsp;<strong><font color='#7f0055'>throws</font></strong>&nbsp;Exception&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1.empiler(4);p1.empiler(5);&nbsp;p1.empiler(6);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p2.empiler(5);p2.empiler(6);&nbsp;p2.empiler(4);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p3.empiler(6);p3.empiler(4);&nbsp;p3.empiler(5);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p4.empiler(5);p4.empiler(4);&nbsp;p4.empiler(6);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p1.equals(p2));&nbsp;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent&nbsp;?&nbsp;"</font>,&nbsp;p1.equals(p3));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p1.equals(p4));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p2.equals(p3));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p2.equals(p4));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertFalse(<font color='#2a00ff'>"égalité&nbsp;de&nbsp;deux&nbsp;piles&nbsp;de&nbsp;type&nbsp;différent?&nbsp;"</font>,&nbsp;p3.equals(p4));
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            </p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 sources">
+                    <a href="question2/PileI.java"> <button type="button" class="btn btn-info">Question 2 : interface PileI</button></a>
+                    <a href="question2/Pile.java"> <button type="button" class="btn btn-info">Question 2 : Pile</button></a>
+                    <a href="question2/PileTest.java"> <button type="button" class="btn btn-info">Pile : Test</button></a>
+                    <a href="question2/Pile2.java"> <button type="button" class="btn btn-info">Question 2 : Pile2</button></a>
+                    <a href="question2/Pile2Test.java"> <button type="button" class="btn btn-info">Pile2 : Test</button></a>
+                    <a href="question2/Pile3.java"> <button type="button" class="btn btn-info">Question 2 : Pile3</button></a>
+                    <a href="question2/Pile3Test.java"> <button type="button" class="btn btn-info">Pile3 : Test</button></a>
+                    <a href="question2/Pile4.java"> <button type="button" class="btn btn-info">Question 2 : Pile4</button></a>
+                    <a href="question2/Pile4Test.java"> <button type="button" class="btn btn-info">Pile4 : Test</button></a>
+                    <a href="question2/PilesAuMemeComportement.java"> <button type="button" class="btn btn-info">PilesAuMemeComportement</button></a>
+                    <a href="question2/Uniquement_Pour_La_Question2_5.java"> <button type="button" class="btn btn-info">Uniquement_Pour_La_Question2_5</button></a>
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 3</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p><h4> La généricité</h4>
+                            Ce concept est très puissant et peut vérifier que la pile programmé contiennent un type d'élément nommé type T.
+                            Le constructeur et les méthodes empiler et dépiler de la pile2 avec type générique type T:
+
+                            </p>
+                            <p >
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**&nbsp;Création&nbsp;d'une&nbsp;pile.
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@param</strong>&nbsp;taille&nbsp;la&nbsp;"taille&nbsp;maximale"&nbsp;de&nbsp;la&nbsp;pile,&nbsp;doit&nbsp;être&nbsp;>&nbsp;0
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;Pile2(<strong><font color='#7f0055'>int</font></strong>&nbsp;taille){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>&nbsp;(taille&nbsp;<&nbsp;0)
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;taille&nbsp;=&nbsp;CAPACITE_PAR_DEFAUT;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;Stack&lsaquo;T&rsaquo;();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.capacite&nbsp;=&nbsp;taille;
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Construceteur&nbsp;pad&nbsp;défaut
+                                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;Pile2(){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>(CAPACITE_PAR_DEFAUT);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;empiler(T&nbsp;o)&nbsp;<strong><font color='#7f0055'>throws</font></strong>&nbsp;PilePleineException{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>(<strong><font color='#7f0055'>this</font></strong>.stk.size()&nbsp;<&nbsp;<strong><font color='#7f0055'>this</font></strong>.capacite){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk.push(o);
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<strong><font color='#7f0055'>else</font></strong>&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>throw</font></strong>&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;PilePleineException();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;T&nbsp;depiler()&nbsp;<strong><font color='#7f0055'>throws</font></strong>&nbsp;PileVideException{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>&nbsp;(<strong><font color='#7f0055'>this</font></strong>.estVide()){
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>throw</font></strong>&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;PileVideException();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;<strong><font color='#7f0055'>this</font></strong>.stk.pop();
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            </p>
+                            <p><h4>L'applette pile</h4>
+                            J'ai entré le type Object à la pile créée dans l'applette mais je pense que j'aurais pu entrer en
+                            paramètres le type de la Pile, pour avoir une version plus intéressante de la Pile générique.
+                            </p>
+                            <p><h4>La Classe une Utilisation</h4>
+                            J'ai utilisé les type PolygoneRegulier et PileI pour initialiser les pile p1 et p2 qui contiennent
+                            un type fixe d'éléments.
+                            </p>
+                            <p>
+                            <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'><strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>static</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;main(String[]&nbsp;args)&nbsp;<strong><font color='#7f0055'>throws</font></strong>&nbsp;Exception&nbsp;{
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PileI<PolygoneRegulier>&nbsp;p1=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;Pile2<PolygoneRegulier>();
+                                        <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PileI<PileI>&nbsp;p2=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;Pile2<PileI>();
+                                                <br/>
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//&nbsp;p1&nbsp;est&nbsp;ici&nbsp;une&nbsp;pile&nbsp;de&nbsp;polygones&nbsp;réguliers&nbsp;PolygoneRegulier.java
+                                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1.empiler(<strong><font color='#7f0055'>new</font></strong>&nbsp;PolygoneRegulier(4,&nbsp;100));
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p1.empiler(<strong><font color='#7f0055'>new</font></strong>&nbsp;PolygoneRegulier(5,&nbsp;100));
+                                                <br/>
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<font color='#2a00ff'>"&nbsp;la&nbsp;pile&nbsp;p1&nbsp;=&nbsp;"</font>&nbsp;+&nbsp;p1);
+                                                <br/>
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p2.empiler(p1);
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<font color='#2a00ff'>"&nbsp;la&nbsp;pile&nbsp;p2&nbsp;=&nbsp;"</font>&nbsp;+&nbsp;p2);
+                                                <br/>
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>try</font></strong>&nbsp;{
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//p1.empiler(new&nbsp;Boolean(true));&nbsp;//&nbsp;désormais&nbsp;une&nbsp;erreur&nbsp;de
+                                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//String&nbsp;s&nbsp;=&nbsp;(String)p1.depiler();&nbsp;//&nbsp;désormais&nbsp;une&nbsp;erreur&nbsp;de
+                                                </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<strong><font color='#7f0055'>catch</font></strong>&nbsp;(Exception&nbsp;e)&nbsp;{
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 sources">
+                    <a href="question3/PileI.java"> <button type="button" class="btn btn-info">Question 3 : PileI </button></a>
+
+                    <a href="question3/Pile2.java"> <button type="button" class="btn btn-info">Question 3 : Pile2 </button></a>
+                    <a href="question3/UneUtilisation.java"> <button type="button" class="btn btn-info">Question 3 : uneUtilisation </button></a>
+
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-left">Conclusion, bibliographie et remarques :</h3>
+                        </div>
+                        <div class="panel-body text-left">
+                            Ce Tp était composé de plusieurs concepts importants:
+                            <ul>
+                                <li>L'interface : un protocole q'une classe doit respecter, une classe qui
+                                    implémente une interface est obligé a respecter les règles de cette dernière. </li>
+                                <li> La classes imbriqué: classes interne , elle a accès au variables englobente</li>
+                                <li>La généricité </li>
+                            </ul>
+                            <p>En plus, l'utilisation de plusieurs structres de données pour recréer une seule Pile était très enrichissant.</p>
+                            <p>Malheuresment je n'ai pas réussie à générer un rapport emma et de trouver une solution pour
+                                faire fonctioner l'applette dans mon navigateur.</p>
+                        </div>
+                    </div>
+
+
+
+                    </p>
+                </div>
+
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+
+
+{%   endblock content %}

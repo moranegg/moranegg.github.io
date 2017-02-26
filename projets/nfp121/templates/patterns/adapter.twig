@@ -1,0 +1,85 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+    <div class="row">
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >ADAPTER </h2>
+                    <p>
+                        l'objectif  du pattern ADAPTER est de fournir l'interface qu'un client attend en
+                        utilisant les services d'une classe dont l'interface est différente.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-left">
+                    <h3> L'adaptateur d'objet </h3>
+                    <img src="../images/adapter.gif" />
+                    <br />
+                    <h3> L'adaptateurs de classe </h3>
+                    <img src="../images/class_adapter.gif" />
+                    <br />
+                    <img src="../images/adapter_sequence.png" />
+
+                </div>
+                <div class="col-md-6 ">
+                    <h3>Exemples des adaptateurs :</h3>
+
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> EnumerationIterator <span style='font-weight:bold;color:#7B0052;'>implements</span> Iterator&lt;Object&gt; <span style='font-weight:bold;color:#D3171B'>{</span>
+                    Enumeration&lt;?&gt; enumeration;
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> EnumerationIterator(Enumeration&lt;?&gt; enumeration) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    this.enumeration = enumeration;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>boolean</span> hasNext() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> enumeration.hasMoreElements();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> Object next() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> enumeration.nextElement();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> remove() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> UnsupportedOperationException();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> IteratorEnumeration <span style='font-weight:bold;color:#7B0052;'>implements</span> Enumeration&lt;Object&gt; <span style='font-weight:bold;color:#D3171B'>{</span>
+                    Iterator&lt;?&gt; iterator;
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> IteratorEnumeration(Iterator&lt;?&gt; iterator) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    this.iterator = iterator;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>boolean</span> hasMoreElements() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> iterator.hasNext();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> Object nextElement() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> iterator.next();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+                    <h3> Chez le client</h3>
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> EnumerationIteratorTestDrive <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>static</span> <span style='font-weight:bold;color:#7B0052;'>void</span> main (String args[]) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    Vector&lt;String&gt; v = <span style='font-weight:bold;color:#7B0052;'>new</span> Vector&lt;String&gt;(Arrays.asList(args));
+                    Iterator&lt;?&gt; iterator = <span style='font-weight:bold;color:#7B0052;'>new</span> EnumerationIterator(v.elements());
+                    <span style='font-weight:bold;color:#7B0052;'>while</span> (iterator.hasNext()) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    System.out.println(iterator.next());
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                </div>
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+    </div><!-- end row -->
+
+{% endblock content %}

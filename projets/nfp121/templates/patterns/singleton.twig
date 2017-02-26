@@ -1,0 +1,63 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >SINGLETON </h2>
+                    <p>
+                        l'objectif  du pattern SINGLETON  est de restreindre l'instanciation d'une classe à un seul objet.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-left">
+
+                    <img src="../images/singleton.jpg" />
+                    <br />
+                    <img src="../images/singleton_sequence.gif" />
+
+
+                </div>
+
+
+                <div class="col-md-6 text-left">
+                    <h3>Exemples :</h3>
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> SingletonExample <span style='font-weight:bold;color:#D3171B'>{</span>
+
+    <span style='color:#3F7F5F'>// Static member holds only one instance of the
+</span>    <span style='color:#3F7F5F'>// SingletonExample class
+</span>    <span style='font-weight:bold;color:#7B0052;'>private</span> <span style='font-weight:bold;color:#7B0052;'>static</span> SingletonExample singletonInstance;
+
+    <span style='color:#3F7F5F'>// SingletonExample prevents any other class from instantiating
+</span>    <span style='font-weight:bold;color:#7B0052;'>private</span> SingletonExample() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F7F5F'>// Providing Global point of access
+</span>    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>static</span> SingletonExample getSingletonInstance() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>if</span> (<span style='font-weight:bold;color:#7B0052;'>null</span> == singletonInstance) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    singletonInstance = <span style='font-weight:bold;color:#7B0052;'>new</span> SingletonExample();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> singletonInstance;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> printSingleton()<span style='font-weight:bold;color:#D3171B'>{</span>
+                    System.out.println(<span style='color:#2A00FF'>"Inside print Singleton"</span>);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+
+                </div>
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,202 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+    </div>
+
+    <div class="container">
+
+      <div class="starter-template">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h2 >PROXY </h2>
+					<p>
+					l'objectif  du pattern PROXY est de contrôler l'accès à un objet en fournissant un
+					intermédiaire pour cette objet.
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 text-left">
+					<h3> Proxy distant ou proxy virtuel</h3>
+					<img src="../images/proxy.png" />
+
+
+					<h3>Exemples :</h3>
+						<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>import</span> java.net.*;
+<span style='font-weight:bold;color:#7B0052;'>import</span> java.awt.*;
+<span style='font-weight:bold;color:#7B0052;'>import</span> javax.swing.*;
+
+<span style='font-weight:bold;color:#7B0052;'>class</span> ImageProxy <span style='font-weight:bold;color:#7B0052;'>implements</span> Icon <span style='font-weight:bold;color:#D3171B'>{</span>
+	<span style='font-weight:bold;color:#7B0052;'>volatile</span> ImageIcon imageIcon;
+	<span style='font-weight:bold;color:#7B0052;'>final</span> URL imageURL;
+	Thread retrievalThread;
+	<span style='font-weight:bold;color:#7B0052;'>boolean</span> retrieving = <span style='font-weight:bold;color:#7B0052;'>false</span>;
+
+	<span style='font-weight:bold;color:#7B0052;'>public</span> ImageProxy(URL url) <span style='font-weight:bold;color:#D3171B'>{</span> imageURL = url; <span style='font-weight:bold;color:#D3171B'>}</span>
+
+	<span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>int</span> getIconWidth() <span style='font-weight:bold;color:#D3171B'>{</span>
+		<span style='font-weight:bold;color:#7B0052;'>if</span> (imageIcon != <span style='font-weight:bold;color:#7B0052;'>null</span>) <span style='font-weight:bold;color:#D3171B'>{</span>
+            <span style='font-weight:bold;color:#7B0052;'>return</span> imageIcon.getIconWidth();
+        <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+			<span style='font-weight:bold;color:#7B0052;'>return</span> 800;
+		<span style='font-weight:bold;color:#D3171B'>}</span>
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+
+	<span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>int</span> getIconHeight() <span style='font-weight:bold;color:#D3171B'>{</span>
+		<span style='font-weight:bold;color:#7B0052;'>if</span> (imageIcon != <span style='font-weight:bold;color:#7B0052;'>null</span>) <span style='font-weight:bold;color:#D3171B'>{</span>
+            <span style='font-weight:bold;color:#7B0052;'>return</span> imageIcon.getIconHeight();
+        <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+			<span style='font-weight:bold;color:#7B0052;'>return</span> 600;
+		<span style='font-weight:bold;color:#D3171B'>}</span>
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+
+	<span style='font-weight:bold;color:#7B0052;'>synchronized</span> <span style='font-weight:bold;color:#7B0052;'>void</span> setImageIcon(ImageIcon imageIcon) <span style='font-weight:bold;color:#D3171B'>{</span>
+		this.imageIcon = imageIcon;
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+
+	<span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> paintIcon(<span style='font-weight:bold;color:#7B0052;'>final</span> Component c, Graphics  g, <span style='font-weight:bold;color:#7B0052;'>int</span> x,  <span style='font-weight:bold;color:#7B0052;'>int</span> y) <span style='font-weight:bold;color:#D3171B'>{</span>
+		<span style='font-weight:bold;color:#7B0052;'>if</span> (imageIcon != <span style='font-weight:bold;color:#7B0052;'>null</span>) <span style='font-weight:bold;color:#D3171B'>{</span>
+			imageIcon.paintIcon(c, g, x, y);
+		<span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+			g.drawString(<span style='color:#2A00FF'>"Loading CD cover, please wait..."</span>, x+300, y+190);
+			<span style='font-weight:bold;color:#7B0052;'>if</span> (!retrieving) <span style='font-weight:bold;color:#D3171B'>{</span>
+				retrieving = <span style='font-weight:bold;color:#7B0052;'>true</span>;
+
+				retrievalThread = <span style='font-weight:bold;color:#7B0052;'>new</span> Thread(<span style='font-weight:bold;color:#7B0052;'>new</span> Runnable() <span style='font-weight:bold;color:#D3171B'>{</span>
+					<span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> run() <span style='font-weight:bold;color:#D3171B'>{</span>
+						<span style='font-weight:bold;color:#7B0052;'>try</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+							setImageIcon(<span style='font-weight:bold;color:#7B0052;'>new</span> ImageIcon(imageURL, <span style='color:#2A00FF'>"CD Cover"</span>));
+							c.repaint();
+						<span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>catch</span> (Exception e) <span style='font-weight:bold;color:#D3171B'>{</span>
+							e.printStackTrace();
+						<span style='font-weight:bold;color:#D3171B'>}</span>
+					<span style='font-weight:bold;color:#D3171B'>}</span>
+				<span style='font-weight:bold;color:#D3171B'>}</span>);
+				retrievalThread.start();
+			<span style='font-weight:bold;color:#D3171B'>}</span>
+		<span style='font-weight:bold;color:#D3171B'>}</span>
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+<span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>import</span> java.awt.*;
+<span style='font-weight:bold;color:#7B0052;'>import</span> javax.swing.*;
+
+<span style='font-weight:bold;color:#7B0052;'>class</span> ImageComponent <span style='font-weight:bold;color:#7B0052;'>extends</span> JComponent <span style='font-weight:bold;color:#D3171B'>{</span>
+	<span style='font-weight:bold;color:#7B0052;'>private</span> <span style='font-weight:bold;color:#7B0052;'>static</span> <span style='font-weight:bold;color:#7B0052;'>final</span> <span style='font-weight:bold;color:#7B0052;'>long</span> serialVersionUID = 1L;
+	<span style='font-weight:bold;color:#7B0052;'>private</span> Icon icon;
+
+	<span style='font-weight:bold;color:#7B0052;'>public</span> ImageComponent(Icon icon) <span style='font-weight:bold;color:#D3171B'>{</span>
+		this.icon = icon;
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+
+	<span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> setIcon(Icon icon) <span style='font-weight:bold;color:#D3171B'>{</span>
+		this.icon = icon;
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+
+	<span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> paintComponent(Graphics g) <span style='font-weight:bold;color:#D3171B'>{</span>
+		super.paintComponent(g);
+		<span style='font-weight:bold;color:#7B0052;'>int</span> w = icon.getIconWidth();
+		<span style='font-weight:bold;color:#7B0052;'>int</span> h = icon.getIconHeight();
+		<span style='font-weight:bold;color:#7B0052;'>int</span> x = (800 - w)/2;
+		<span style='font-weight:bold;color:#7B0052;'>int</span> y = (600 - h)/2;
+		icon.paintIcon(this, g, x, y);
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+<span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+					<h3> Chez le client</h3>
+						<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>import</span> java.net.*;
+<span style='font-weight:bold;color:#7B0052;'>import</span> javax.swing.*;
+<span style='font-weight:bold;color:#7B0052;'>import</span> java.util.*;
+
+<span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> ImageProxyTestDrive <span style='font-weight:bold;color:#D3171B'>{</span>
+	ImageComponent imageComponent;
+	JFrame frame = <span style='font-weight:bold;color:#7B0052;'>new</span> JFrame(<span style='color:#2A00FF'>"CD Cover Viewer"</span>);
+	JMenuBar menuBar;
+	JMenu menu;
+	Hashtable&lt;String, String&gt; cds = <span style='font-weight:bold;color:#7B0052;'>new</span> Hashtable&lt;String, String&gt;();
+
+	<span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>static</span> <span style='font-weight:bold;color:#7B0052;'>void</span> main (String[] args) <span style='font-weight:bold;color:#7B0052;'>throws</span> Exception <span style='font-weight:bold;color:#D3171B'>{</span>
+		ImageProxyTestDrive testDrive = <span style='font-weight:bold;color:#7B0052;'>new</span> ImageProxyTestDrive();
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+
+	<span style='font-weight:bold;color:#7B0052;'>public</span> ImageProxyTestDrive() <span style='font-weight:bold;color:#7B0052;'>throws</span> Exception<span style='font-weight:bold;color:#D3171B'>{</span>
+		cds.put(<span style='color:#2A00FF'>"Buddha Bar"</span>,<span style='color:#2A00FF'>"http://images.amazon.com/images/P/B00009XBYK.01.LZZZZZZZ.jpg"</span>);
+		cds.put(<span style='color:#2A00FF'>"Ima"</span>,<span style='color:#2A00FF'>"http://images.amazon.com/images/P/B000005IRM.01.LZZZZZZZ.jpg"</span>);
+		cds.put(<span style='color:#2A00FF'>"Karma"</span>,<span style='color:#2A00FF'>"http://images.amazon.com/images/P/B000005DCB.01.LZZZZZZZ.gif"</span>);
+		cds.put(<span style='color:#2A00FF'>"MCMXC A.D."</span>,<span style='color:#2A00FF'>"http://images.amazon.com/images/P/B000002URV.01.LZZZZZZZ.jpg"</span>);
+		cds.put(<span style='color:#2A00FF'>"Northern Exposure"</span>,<span style='color:#2A00FF'>"http://images.amazon.com/images/P/B000003SFN.01.LZZZZZZZ.jpg"</span>);
+		cds.put(<span style='color:#2A00FF'>"Selected Ambient Works, Vol. 2"</span>,<span style='color:#2A00FF'>"http://images.amazon.com/images/P/B000002MNZ.01.LZZZZZZZ.jpg"</span>);
+
+		URL initialURL = <span style='font-weight:bold;color:#7B0052;'>new</span> URL((String)cds.get(<span style='color:#2A00FF'>"Selected Ambient Works, Vol. 2"</span>));
+		menuBar = <span style='font-weight:bold;color:#7B0052;'>new</span> JMenuBar();
+		menu = <span style='font-weight:bold;color:#7B0052;'>new</span> JMenu(<span style='color:#2A00FF'>"Favorite CDs"</span>);
+		menuBar.add(menu);
+		frame.setJMenuBar(menuBar);
+
+		<span style='font-weight:bold;color:#7B0052;'>for</span> (Enumeration&lt;String&gt; e = cds.keys(); e.hasMoreElements();) <span style='font-weight:bold;color:#D3171B'>{</span>
+			String name = (String)e.nextElement();
+			JMenuItem menuItem = <span style='font-weight:bold;color:#7B0052;'>new</span> JMenuItem(name);
+			menu.add(menuItem);
+			menuItem.addActionListener(event -&gt; <span style='font-weight:bold;color:#D3171B'>{</span>
+				imageComponent.setIcon(<span style='font-weight:bold;color:#7B0052;'>new</span> ImageProxy(getCDUrl(event.getActionCommand())));
+				frame.repaint();
+			<span style='font-weight:bold;color:#D3171B'>}</span>);
+		<span style='font-weight:bold;color:#D3171B'>}</span>
+
+		<span style='color:#3F7F5F'>// set up frame and menus
+</span>
+		Icon icon = <span style='font-weight:bold;color:#7B0052;'>new</span> ImageProxy(initialURL);
+		imageComponent = <span style='font-weight:bold;color:#7B0052;'>new</span> ImageComponent(icon);
+		frame.getContentPane().add(imageComponent);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(800,600);
+		frame.setVisible(<span style='font-weight:bold;color:#7B0052;'>true</span>);
+
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+
+	URL getCDUrl(String name) <span style='font-weight:bold;color:#D3171B'>{</span>
+		<span style='font-weight:bold;color:#7B0052;'>try</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+			<span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>new</span> URL((String)cds.get(name));
+		<span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>catch</span> (MalformedURLException e) <span style='font-weight:bold;color:#D3171B'>{</span>
+			e.printStackTrace();
+			<span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>null</span>;
+		<span style='font-weight:bold;color:#D3171B'>}</span>
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+<span style='font-weight:bold;color:#D3171B'>}</span></pre>
+					<h3> un proxy dynamique </h3>
+					<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>import</span> java.lang.reflect.*;
+
+<span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> OwnerInvocationHandler <span style='font-weight:bold;color:#7B0052;'>implements</span> InvocationHandler <span style='font-weight:bold;color:#D3171B'>{</span>
+	PersonBean person;
+
+	<span style='font-weight:bold;color:#7B0052;'>public</span> OwnerInvocationHandler(PersonBean person) <span style='font-weight:bold;color:#D3171B'>{</span>
+		this.person = person;
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+
+	<span style='font-weight:bold;color:#7B0052;'>public</span> Object invoke(Object proxy, Method method, Object[] args)
+			<span style='font-weight:bold;color:#7B0052;'>throws</span> IllegalAccessException <span style='font-weight:bold;color:#D3171B'>{</span>
+
+		<span style='font-weight:bold;color:#7B0052;'>try</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+			<span style='font-weight:bold;color:#7B0052;'>if</span> (method.getName().startsWith(<span style='color:#2A00FF'>"get"</span>)) <span style='font-weight:bold;color:#D3171B'>{</span>
+				<span style='font-weight:bold;color:#7B0052;'>return</span> method.invoke(person, args);
+   			<span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#7B0052;'>if</span> (method.getName().equals(<span style='color:#2A00FF'>"setHotOrNotRating"</span>)) <span style='font-weight:bold;color:#D3171B'>{</span>
+				<span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> IllegalAccessException();
+			<span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#7B0052;'>if</span> (method.getName().startsWith(<span style='color:#2A00FF'>"set"</span>)) <span style='font-weight:bold;color:#D3171B'>{</span>
+				<span style='font-weight:bold;color:#7B0052;'>return</span> method.invoke(person, args);
+			<span style='font-weight:bold;color:#D3171B'>}</span>
+        <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>catch</span> (InvocationTargetException e) <span style='font-weight:bold;color:#D3171B'>{</span>
+            e.printStackTrace();
+        <span style='font-weight:bold;color:#D3171B'>}</span>
+		<span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>null</span>;
+	<span style='font-weight:bold;color:#D3171B'>}</span>
+<span style='font-weight:bold;color:#D3171B'>}</span></pre>
+				</div>
+			</div>
+
+	</div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+
+{% endblock content %}

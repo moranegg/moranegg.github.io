@@ -1,0 +1,481 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >NFP 121 - TP 7 : Introspection</h2>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-5">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Nom
+                            </td>
+                            <td>GRUENPETER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Prénom
+                            </td>
+                            <td>Morane Otilia
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Matricule
+                            </td>
+                            <td>100055662
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-4 ">
+                </div>
+                <div class="col-md-3 sources hidden-xs">
+                    <h2> Les sources </h2>
+
+                </div>
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 1 : Une "calculette scientifique"</h3>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='color:#3F5FBF'>/**
+     * @param  nomDeLaMéthode Nom de la fonction + "(double)" ou "(double, double)"
+     * @return true si la fonction est binaire, d'arité 2
+     * @throws NoSuchElementException si la méthode demandée n'existe pas
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>boolean</span> cetteMethodeAttendDeuxParametres(String nomDeLaMethode)<span style='font-weight:bold;color:#7B0052;'>throws</span> NoSuchElementException<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(!cetteMethodeEstPresente(nomDeLaMethode))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(nomDeLaMethode.contains(<span style='color:#2A00FF'>"(double, double)"</span>))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>true</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>else</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>false</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * @param  nomDeLaMéthode Nom de la fonction + "(double)" ou "(double, double)"
+     * @return true si la fonction est unaire, d'arité 1
+     * @throws NoSuchElementException si la méthode demandée n'existe pas
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>boolean</span> cetteMethodeAttendUnSeulParametre(String nomDeLaMethode)<span style='font-weight:bold;color:#7B0052;'>throws</span> NoSuchElementException<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(!cetteMethodeEstPresente(nomDeLaMethode))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(nomDeLaMethode.contains(<span style='color:#2A00FF'>"(double)"</span>))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>true</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>else</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>false</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * Obtention de la liste ordonnée des méthodes
+     * @return la liste triée des fonctions issues de java.lang.Math
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> String[] listeDesMethodes()<span style='font-weight:bold;color:#D3171B'>{</span>
+                            String [] tab = <span style='font-weight:bold;color:#7B0052;'>new</span> String[tableDesMethodes.size()];
+
+                            <span style='font-weight:bold;color:#7B0052;'>int</span> compteur = 0;
+                            <span style='font-weight:bold;color:#7B0052;'>for</span>(String s: tableDesMethodes.keySet())<span style='font-weight:bold;color:#D3171B'>{</span>
+                            tab[compteur] = s;
+                            compteur++;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> tab;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/** Invocation d'une méthode de la table
+     * @param  nomDeLaMéthode Nom de la fonction + "(double)"
+     * @param arg1 l'opérande
+     * @return un résultat
+     * @throws NoSuchElementException si la méthode demandée n'existe pas ou une exception levée par la fonction appelée
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>double</span> invoquer(String nomDeLaMethode,double arg1) <span style='font-weight:bold;color:#7B0052;'>throws</span> Exception<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(this.cetteMethodeAttendUnSeulParametre(nomDeLaMethode))<span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            Class cl = Class.forName(<span style='color:#2A00FF'>"java.lang.Math"</span>);
+
+                            Object result = tableDesMethodes.get(nomDeLaMethode).invoke(cl, <span style='font-weight:bold;color:#7B0052;'>new</span> Object[]<span style='font-weight:bold;color:#D3171B'>{</span>arg1<span style='font-weight:bold;color:#D3171B'>}</span>);
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> (Double)result;
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>else</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>catch</span> (NoSuchElementException e)<span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/** Invocation d'une méthode de la table
+     * @param  nomDeLaMéthode Nom de la fonction + "(double, double)"
+     * @param arg1 l'opérande
+     * @return un résultat
+     * @throws NoSuchElementException si la méthode demandée n'existe pas ou une exception levée par la fonction appelée
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>double</span> invoquer(String nomDeLaMethode, <span style='font-weight:bold;color:#7B0052;'>double</span> arg1, <span style='font-weight:bold;color:#7B0052;'>double</span> arg2) <span style='font-weight:bold;color:#7B0052;'>throws</span> Exception<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(this.cetteMethodeAttendDeuxParametres(nomDeLaMethode))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            Class cl = Class.forName(<span style='color:#2A00FF'>"java.lang.Math"</span>);
+
+                            Object result = tableDesMethodes.get(nomDeLaMethode).invoke(cl , <span style='font-weight:bold;color:#7B0052;'>new</span> Object[]<span style='font-weight:bold;color:#D3171B'>{</span>arg1, arg2<span style='font-weight:bold;color:#D3171B'>}</span>);
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> (Double) result;
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>else</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>catch</span> (NoSuchElementException e)<span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/**
+     * Le dictionnaire contient la liste des méthodes disponibles.
+     * un choix de dictionnaire pourrait être pour la Clé une String soit le Nom de la fonction + "(double)" ou "(double, double)".&lt;br&gt;
+     *  et en Valeur =  la Method correspondante.
+     *  ou tout autre choix
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>private</span> <span style='font-weight:bold;color:#7B0052;'>static</span> Map&lt;String,Method&gt; tableDesMethodes = <span style='font-weight:bold;color:#7B0052;'>null</span>;<span style='color:#3F7F5F'>// à compléter ...
+</span>
+                            <span style='color:#3F5FBF'>/** bloc statique d'intialisation de la table des méthodes */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>static</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            tableDesMethodes = <span style='font-weight:bold;color:#7B0052;'>new</span> TreeMap&lt;String,Method&gt;();
+                            <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            Class cl= Class.forName(<span style='color:#2A00FF'>"java.lang.Math"</span>);
+            <span style='color:#3F7F5F'>//Object o = cl.newInstance();
+</span>            <span style='font-weight:bold;color:#7B0052;'>for</span>(Method m: cl.getMethods())<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>boolean</span> isDouble = <span style='font-weight:bold;color:#7B0052;'>true</span>;
+                            <span style='font-weight:bold;color:#7B0052;'>boolean</span> endParam = <span style='font-weight:bold;color:#7B0052;'>false</span>;
+                            <span style='font-weight:bold;color:#7B0052;'>int</span> compteur = 0;
+                            <span style='font-weight:bold;color:#7B0052;'>while</span>(endParam == <span style='font-weight:bold;color:#7B0052;'>false</span> && isDouble == <span style='font-weight:bold;color:#7B0052;'>true</span>)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>for</span>(Class param: m.getParameterTypes())<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(param.getName()!= <span style='color:#2A00FF'>"double"</span>)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            isDouble = <span style='font-weight:bold;color:#7B0052;'>false</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+                            compteur++;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>( m.getReturnType().getName()!= <span style='color:#2A00FF'>"double"</span>)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            isDouble = <span style='font-weight:bold;color:#7B0052;'>false</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            endParam = <span style='font-weight:bold;color:#7B0052;'>true</span> ;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span> (isDouble)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(compteur == 1)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            tableDesMethodes.put(m.getName()+<span style='color:#2A00FF'>"(double)"</span>, m);
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#7B0052;'>if</span> (compteur == 2)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            tableDesMethodes.put(m.getName()+<span style='color:#2A00FF'>"(double, double)"</span>, m);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>catch</span>(Exception e)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                        </div><!--end panel body-->
+                    </div>
+                </div>
+                <div class="col-md-3 sources">
+
+                    <a href="question1/TableMethodesJavaLangMath.java"> <button type="button" class="btn btn-info">TableMethodesJavaLangMath</button></a>
+                    <a href="question1/TableMethodesJavaLangMathTest.java"> <button type="button" class="btn btn-info">TableMethodesJavaLangMathTest</button></a>
+                    <a href="question1/Calculette.java"> <button type="button" class="btn btn-info">Calculette</button></a>
+
+
+
+                </div>
+            </div><!--end row -->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 2: Ajout dynamique d'observateurs(Observer) et d'écouteurs(Listener)</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                La question 2.1 était relativement simple et claire prise directement du cours. J'ai invoker les méthodes après les avoir trouver dans la
+                                Classe correspondante:
+                            </p>
+
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='color:#3F5FBF'>/** Cette methode permet de relier par introspection, un observable et un observateur&lt;p&gt;
+     * Appel par introspection de la methode observable.addObserver(observer)
+     *
+     * @param observable une instance de la classe java.util.Observable ou l'une de ses derivees
+     * @param observer une implementation de l'interface java.util.Observer
+     * @throws NoSuchElementException en cas d'erreur
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>static</span> <span style='font-weight:bold;color:#7B0052;'>void</span> lierObservableEtObserver(Object observable, Object observer) <span style='font-weight:bold;color:#7B0052;'>throws</span> NoSuchElementException<span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            String obs = observable.getClass().getName();
+                            Class cl = Class.forName(obs);
+                            Class[] types = <span style='font-weight:bold;color:#7B0052;'>new</span> Class[] <span style='font-weight:bold;color:#D3171B'>{</span> Observer.class <span style='font-weight:bold;color:#D3171B'>}</span>;
+                            Method m = cl.getMethod(<span style='color:#2A00FF'>"addObserver"</span>, types );
+                            m.invoke(observable , <span style='font-weight:bold;color:#7B0052;'>new</span> Object[]<span style='font-weight:bold;color:#D3171B'>{</span>observer<span style='font-weight:bold;color:#D3171B'>}</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>catch</span>(Exception e)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/** Cette methode permet de delier par introspection, un observable et un observateur&lt;p&gt;
+     * Appel par introspection de la methode observable.deleteObserver(observer)
+     *
+     * @param observable une instance de la classe java.util.Observable ou l'une de ses derivees
+     * @param observer une implementation de l'interface java.util.Observer
+     * @throws NoSuchElementException en cas d'erreur
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>static</span> <span style='font-weight:bold;color:#7B0052;'>void</span> delierObservableEtObserver(Object observable, Object observer) <span style='font-weight:bold;color:#7B0052;'>throws</span> NoSuchElementException<span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            String obs = observable.getClass().getName(); <span style='color:#3F7F5F'>//"java.util.Observable"
+</span>            Class cl = Class.forName(obs);
+                            Class[] types = <span style='font-weight:bold;color:#7B0052;'>new</span> Class[] <span style='font-weight:bold;color:#D3171B'>{</span> Observer.class <span style='font-weight:bold;color:#D3171B'>}</span>;
+                            Method m = cl.getMethod(<span style='color:#2A00FF'>"deleteObserver"</span>, types);
+
+                            m.invoke(observable , <span style='font-weight:bold;color:#7B0052;'>new</span> Object[]<span style='font-weight:bold;color:#D3171B'>{</span>observer<span style='font-weight:bold;color:#D3171B'>}</span>);
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>catch</span>(Exception e)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+
+                            <p> La question 2.2 était plus subtile, au départ je voulais directement trouver la méthode addXXXXListener par le nom de la classe
+                                or cette approche me peremtait pas de passer les tests internes. En ecrivant une méthode Main (ci-dessous) qui sorait les nom de méthodes
+                                j'ai réalisé qu'il fallait une autre approche pour résoudre cette question.
+                            </p>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>static</span> <span style='font-weight:bold;color:#7B0052;'>void</span> main(String [] args)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            Jbouton source = <span style='font-weight:bold;color:#7B0052;'>new</span> Canvas();
+                            ActionListener listener = <span style='font-weight:bold;color:#7B0052;'>new</span> ActionListener()<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> actionPerformed(ActionEvent ae)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>;
+                            Class clListener = listener.getClass();<span style='color:#3F7F5F'>//la class listener
+</span>            Class clSource = source.getClass();
+                            System.out.println(clListener.getName().toString());
+                            System.out.println(clSource.getName().toString());
+
+                            <span style='font-weight:bold;color:#7B0052;'>for</span>(Method m: clSource.getMethods())<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(m.getParameterCount()==1)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(m.getName().contains(<span style='color:#2A00FF'>"add"</span>) && m.getParameterTypes()[0].isInstance(listener))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            System.out.println(m.toString());
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>catch</span>(Exception e)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='color:#3F5FBF'>/** Cette methode permet de relier par introspection, une source et un "listener"&lt;p&gt;
+     * Appel par introspection de la methode source.addXXXXListener(listener)
+     *
+     * @param source est une instance
+     * @param listener une implementation d'une interface XXXXListener
+     * @throws NoSuchElementException en cas d'erreur
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>static</span> <span style='font-weight:bold;color:#7B0052;'>void</span> lierSourceEtListener(Object source, Object listener) <span style='font-weight:bold;color:#7B0052;'>throws</span> NoSuchElementException<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            Class clListener = listener.getClass();<span style='color:#3F7F5F'>//la class listener
+</span>            Class clSource = source.getClass();
+                            <span style='font-weight:bold;color:#7B0052;'>boolean</span> invoked = <span style='font-weight:bold;color:#7B0052;'>false</span>;
+
+                            <span style='font-weight:bold;color:#7B0052;'>for</span>(Method m: clSource.getMethods())<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(m.getParameterCount()==1)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(m.getName().contains(<span style='color:#2A00FF'>"add"</span>) && m.getParameterTypes()[0].isInstance(listener))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            m.invoke(source , listener);
+                            invoked = <span style='font-weight:bold;color:#7B0052;'>true</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(!invoked)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>catch</span>(Exception e)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='color:#3F5FBF'>/** Cette methode permet de delier par introspection, une source et un "listener"&lt;p&gt;
+     * Appel par introspection de la methode source.removeXXXXListener(listener)
+     *
+     * @param source est une instance
+     * @param listener une implementation d'une interface XXXXListener
+     * @throws NoSuchElementException en cas d'erreur
+     */</span>
+                            <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>static</span> <span style='font-weight:bold;color:#7B0052;'>void</span> delierSourceEtListener(Object source, Object listener) <span style='font-weight:bold;color:#7B0052;'>throws</span> Exception<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            Class clListener = listener.getClass();<span style='color:#3F7F5F'>//la class listener
+</span>            Class clSource = source.getClass();
+                            <span style='font-weight:bold;color:#7B0052;'>boolean</span> invoked = <span style='font-weight:bold;color:#7B0052;'>false</span>;
+
+                            <span style='font-weight:bold;color:#7B0052;'>for</span>(Method m: clSource.getMethods())<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(m.getParameterCount()==1)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(m.getName().contains(<span style='color:#2A00FF'>"remove"</span>) && m.getParameterTypes()[0].isInstance(listener))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            m.invoke(source , listener);
+                            invoked = <span style='font-weight:bold;color:#7B0052;'>true</span>;
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(!invoked)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>catch</span>(Exception e)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> NoSuchElementException();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                        </div><!--end panel body-->
+                    </div>
+
+
+                </div>
+                <div class="col-md-3 sources">
+                    <a href="question2/JFrameDemo.java"> <button type="button" class="btn btn-info">JFrameDemo</button></a>
+                    <a href="question2/ParIntrospection.java"> <button type="button" class="btn btn-info">ParIntrospection</button></a>
+                    <a href="question2/ParIntrospectionTest.java"> <button type="button" class="btn btn-info">ParIntrospectionTest</button></a>
+
+
+                </div>
+
+            </div><!--end row-->
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Question 3-  méthodes héritées non redéfinies localement</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                je n'ai pas résolu la question 3 car j'ai toujours 12 échècs sur JNEWS. Malheuresment je pense que cela est lié
+                                à ma conception de méthode hérité non rédéfini localement.
+                                Dans mon code j'ai décidé de parcourir l'arboresence des superclass pour chaque méthode de la classe en paramètre et
+                                de voir si elle est défini dans cette classe, si oui j'incrémente le compteur.
+                                Puis à la fin de chaque parcours je garde dans une Map la méthode et le nombre de redéfinission. Le compteur est l'indication si il est égale
+                                à 1, la méthode a été hérité et non-redéfini. dans un second temps j'ai ajouté le parcours des interfaces, je ne savais pas si cela était nécessaire.
+                                Finalement j'ai essayer une version qui était postée sur le forum mais je n'ai pas réussie à l'adapter de manière à résoudre le problème.
+                                J'aimerais bien voir une bonne solution de cet exercice qui est très intéressant.
+                            </p>
+                            <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>static</span> Set&lt;Method&gt; getHeritees(String nomDeLaClasse) <span style='font-weight:bold;color:#7B0052;'>throws</span> ClassNotFoundException<span style='font-weight:bold;color:#D3171B'>{</span>
+                            Set&lt;Method&gt; allMethods = <span style='font-weight:bold;color:#7B0052;'>new</span> HashSet&lt;Method&gt;();
+
+                            Class cl = Class.forName(nomDeLaClasse);
+
+                            Map&lt;Method, Integer&gt; map =
+                            <span style='font-weight:bold;color:#7B0052;'>new</span> HashMap&lt;Method,Integer&gt;();
+                            <span style='font-weight:bold;color:#7B0052;'>for</span>(Method m : cl.getMethods())<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>int</span> compteur = 0;
+                            Class superClass = cl.getSuperclass();
+                            Class[] interfaces =cl.getInterfaces();
+                            <span style='font-weight:bold;color:#7B0052;'>while</span>(superClass!=<span style='font-weight:bold;color:#7B0052;'>null</span>)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            superClass.getDeclaredMethod(m.getName(), m.getParameterTypes());
+                            compteur++;
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>catch</span>(NoSuchMethodException e)<span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            superClass = superClass.getSuperclass();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#7B0052;'>for</span>(<span style='font-weight:bold;color:#7B0052;'>int</span> i=0; i &lt; interfaces.length;i++)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+                            interfaces[i].getMethod(m.getName(), m.getParameterTypes());
+                            compteur++;
+                            <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>catch</span>(NoSuchMethodException e)<span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>int</span> mod = m.getModifiers();
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(mod!=0)<span style='font-weight:bold;color:#D3171B'>{</span>
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(Modifier.isPublic(mod)|| Modifier.isProtected(mod))<span style='font-weight:bold;color:#D3171B'>{</span>
+                            map.put(m,compteur);
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            Iterator it = map.entrySet().iterator();
+                            <span style='font-weight:bold;color:#7B0052;'>while</span> (it.hasNext()) <span style='font-weight:bold;color:#D3171B'>{</span>
+                            Map.Entry kv = (Map.Entry)it.next();
+                            Method currentMethod = (Method)kv.getKey();
+                            Integer superClasses = (Integer)kv.getValue();
+                            <span style='font-weight:bold;color:#7B0052;'>if</span>(superClasses == 1)<span style='font-weight:bold;color:#D3171B'>{</span>
+
+                            allMethods.add(currentMethod);
+
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+                            it.remove();
+                            <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                            <span style='font-weight:bold;color:#7B0052;'>return</span> allMethods;
+                            <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                        </div><!--end panel body-->
+                    </div>
+
+
+                </div>
+                <div class="col-md-3 sources">
+
+
+                    <a href="question3/Introspection.java"> <button type="button" class="btn btn-info"> Introspection</button></a>
+                    <a href="question3/IntrospectionTest.java"> <button type="button" class="btn btn-info">IntrospectionTest </button></a>
+
+
+                </div>
+            </div><!--end row-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-left">Conclusion, bibliographie et remarques :</h3>
+                        </div>
+                        <div class="panel-body text-left">
+                            L'étude de L'introspection m'a permis de comprendre mieux la programmation orienté objet
+                            même si cela paraît comme un exercice intelectuel plus qu'autre chose.
+                            <br />
+                            J'aimerais bien voir une bonne solution de l'exercice 3 qui est très intéressant mais que je n'ai pas réussie à résoudre.
+
+                        </div>
+                    </div>
+
+
+
+                    </p>
+                </div>
+
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+
+{%   endblock content %}

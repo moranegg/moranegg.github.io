@@ -1,0 +1,50 @@
+
+<div class="container page ">
+<!--  start contenu de la page-->
+	<div class="row ">
+		<h1> Archive</h1>
+	</div>
+
+        <p>
+            <br>
+        </p>
+        <p></p>
+
+
+
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a href="#archives_harp" data-toggle="tab" class="text-uppercase">
+               Harp
+            </a></li>
+        <li><a href="#archives_photography" data-toggle="tab" class="text-uppercase">Photography</a></li>
+        <li><a href="#archives_cinema" data-toggle="tab" class="text-uppercase">Cinema</a></li>
+        <li><a href="#archives_ihs" data-toggle="tab" class="text-uppercase">IHS</a></li>
+    </ul>
+    <div class="tabbable">
+        <div class="tab-content">
+            <div class="tab-pane active" id="archives_harp">
+                <p></p>
+
+
+
+            </div>
+            <div class="tab-pane" id="archives_photography">
+
+            </div>
+            <div class="tab-pane" id="archives_cinema">
+                <?php include 'archives/cinema.html';?>
+
+            </div>
+            <div class="tab-pane" id="archives_ihs">
+
+            </div>
+        </div>
+    </div> <!-- /tabbable -->
+
+</div>
+<script>
+$("#archives_harp").load("en/archives/harp.html");
+$("#archives_photography").load("en/archives/photography.html");
+$("#archives_cinema").load("en/archives/cinema.html");
+$("#archives_ihs").load("en/archives/ihs.html");
+</script>

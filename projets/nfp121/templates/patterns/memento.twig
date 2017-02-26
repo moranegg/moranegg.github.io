@@ -1,0 +1,103 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >MEMENTO </h2>
+                    <p>
+                        l'objectif  du pattern MEMENTO est de sauvegarder un état important d'un objet clé d'un système et maintenir l'encapsulation de
+                        l'objet clé.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-left">
+                    <h3> Originator-Memento : Caretaker </h3>
+                    <br />
+                    <br />
+                    <p>
+                        Le pattern est très intéressant,mais assez complexe à implémenter. Ci-dessous l'ajout du pattern à l'IHM2.
+                        J'ai créé un textArea appelé Pile pour afficher le haut de ma pile d'originator.memento à chaque changement de la liste. J'ai bien
+                        vue qu'il ajoutait la liste à la dernière modification, or je n'arrivais pas à garder la dernière modification. J'ai découvert que je
+                        pointait sur la même liste, donc ma pile se remplissait avec un pointeur sur la même liste. Après un certain temps de tests avec différents affichages
+                        j'ai compris qu'il me fallait une liste tampon, appelée temp, celle-ci est une variable locale recréée
+                        à chaque modification et sur laquelle je fais temp.addAll(liste). Cette liste temp est sauvgardé dans le Memento.
+                    </p>
+                    <br />
+                    <br />
+                    <img src="../images/memento.png" />
+                    <br />
+                    <br />
+                    <img src="../images/memento_sequence.png" />
+
+
+                </div>
+                <div class="col-md-6 text-left">
+                    <h3>Exemples :</h3>
+
+
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>class</span> Originator <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>private</span> List&lt;String&gt; state;
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> set(List&lt;String&gt; state) <span style='font-weight:bold;color:#D3171B'>{</span>
+            <span style='color:#3F7F5F'>//System.out.println("Originator: Setting state to " + state);
+</span>            this.state = state;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> Memento saveToMemento() <span style='font-weight:bold;color:#D3171B'>{</span>
+            <span style='color:#3F7F5F'>//System.out.println("Originator: Saving to Memento.");
+</span>            <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>new</span> Memento(this.state);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> List&lt;String&gt; restoreFromMemento(Memento memento) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    this.state = memento.getSavedState();
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> state;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#7B0052;'>class</span> Memento <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>private</span> <span style='font-weight:bold;color:#7B0052;'>final</span> List&lt;String&gt; state;
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> Memento(List&lt;String&gt; stateToSave) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    state = stateToSave;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> List&lt;String&gt; getSavedState() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> state;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>class</span> Caretaker <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>private</span> java.util.Stack&lt;Originator.Memento&gt; savedStates = <span style='font-weight:bold;color:#7B0052;'>new</span> java.util.Stack&lt;Originator.Memento&gt;();
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> addMemento(Originator.Memento m) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    savedStates.push(m);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> Originator.Memento getMemento() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> savedStates.pop();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> Originator.Memento seeMemento() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> savedStates.peek();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>boolean</span> isEmpty()<span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> savedStates.empty();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+                </div>
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+
+{% endblock content %}

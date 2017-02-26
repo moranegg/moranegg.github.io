@@ -1,0 +1,135 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >OBSERVER </h2>
+                    <p>
+                        l'objectif  du pattern OBSERVER  est de définir une relation entre objets de type un-à-plusieurs,
+                        de façon que, si un objet change d’état, tous ceux qui en dépendent en soient informés et mis à jour automatiquement.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-left">
+
+                    <img src="../images/observer.gif" />
+                    <br />
+                    <img src="../images/observer_sequence.gif" />
+
+
+                </div>
+
+
+                <div class="col-md-6 text-left">
+                    <h3>Exemples : interface subject</h3>
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>interface</span> Subject <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> registerObserver(Observer o);
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> removeObserver(Observer o);
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> notifyObservers();
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                    <h3> concrete subject </h3>
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> WeatherData <span style='font-weight:bold;color:#7B0052;'>implements</span> Subject <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>private</span> ArrayList&lt;Observer&gt; observers;
+                    <span style='font-weight:bold;color:#7B0052;'>private</span> <span style='font-weight:bold;color:#7B0052;'>float</span> temperature;
+                    <span style='font-weight:bold;color:#7B0052;'>private</span> <span style='font-weight:bold;color:#7B0052;'>float</span> humidity;
+                    <span style='font-weight:bold;color:#7B0052;'>private</span> <span style='font-weight:bold;color:#7B0052;'>float</span> pressure;
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> WeatherData() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    observers = <span style='font-weight:bold;color:#7B0052;'>new</span> ArrayList&lt;Observer&gt;();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> registerObserver(Observer o) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    observers.add(o);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> removeObserver(Observer o) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>int</span> i = observers.indexOf(o);
+                    <span style='font-weight:bold;color:#7B0052;'>if</span> (i &gt;= 0) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    observers.remove(i);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> notifyObservers() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>for</span> (Observer observer : observers) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    observer.update(temperature, humidity, pressure);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> measurementsChanged() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    notifyObservers();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> setMeasurements(<span style='font-weight:bold;color:#7B0052;'>float</span> temperature, <span style='font-weight:bold;color:#7B0052;'>float</span> humidity, <span style='font-weight:bold;color:#7B0052;'>float</span> pressure) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    this.temperature = temperature;
+                    this.humidity = humidity;
+                    this.pressure = pressure;
+                    measurementsChanged();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>float</span> getTemperature() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> temperature;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>float</span> getHumidity() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> humidity;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>float</span> getPressure() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>return</span> pressure;
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                    <h3> interface observer </h3>
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>interface</span> Observer <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> update(<span style='font-weight:bold;color:#7B0052;'>float</span> temp, <span style='font-weight:bold;color:#7B0052;'>float</span> humidity, <span style='font-weight:bold;color:#7B0052;'>float</span> pressure);
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>interface</span> DisplayElement <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> display();
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+                    <h3> concrete observer </h3>
+                    <pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>package</span> headfirst.designpatterns.observer.weather;
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> ForecastDisplay <span style='font-weight:bold;color:#7B0052;'>implements</span> Observer, DisplayElement <span style='font-weight:bold;color:#D3171B'>{</span>
+                    <span style='font-weight:bold;color:#7B0052;'>private</span> <span style='font-weight:bold;color:#7B0052;'>float</span> currentPressure = 29.92f;
+                    <span style='font-weight:bold;color:#7B0052;'>private</span> <span style='font-weight:bold;color:#7B0052;'>float</span> lastPressure;
+                    <span style='font-weight:bold;color:#7B0052;'>private</span> WeatherData weatherData;
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> ForecastDisplay(WeatherData weatherData) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    this.weatherData = weatherData;
+                    weatherData.registerObserver(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> update(<span style='font-weight:bold;color:#7B0052;'>float</span> temp, <span style='font-weight:bold;color:#7B0052;'>float</span> humidity, <span style='font-weight:bold;color:#7B0052;'>float</span> pressure) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    lastPressure = currentPressure;
+                    currentPressure = pressure;
+
+                    display();
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+                    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> display() <span style='font-weight:bold;color:#D3171B'>{</span>
+                    System.out.print(<span style='color:#2A00FF'>"Forecast: "</span>);
+                    <span style='font-weight:bold;color:#7B0052;'>if</span> (currentPressure &gt; lastPressure) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    System.out.println(<span style='color:#2A00FF'>"Improving weather on the way!"</span>);
+                    <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#7B0052;'>if</span> (currentPressure == lastPressure) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    System.out.println(<span style='color:#2A00FF'>"More of the same"</span>);
+                    <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#7B0052;'>if</span> (currentPressure &lt; lastPressure) <span style='font-weight:bold;color:#D3171B'>{</span>
+                    System.out.println(<span style='color:#2A00FF'>"Watch out for cooler, rainy weather"</span>);
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span>
+                    <span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+
+
+                </div>
+            </div>
+
+        </div><!--starter template-->
+
+    </div><!-- /.container -->
+
+{% endblock content %}

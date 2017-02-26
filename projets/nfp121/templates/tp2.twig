@@ -1,0 +1,271 @@
+{%  extends 'main.twig' %}
+
+    {% block content %}
+<div class="container">
+
+    <div class="starter-template">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h2 >NFP 121 - TP2 : Conversion Fahrenheit - Celsius</h2>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-5">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Nom
+                        </td>
+                        <td>GRUENPETER
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Prénom
+                        </td>
+                        <td>Morane Otilia
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Matricule
+                        </td>
+                        <td>100055662
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4 ">
+            </div>
+            <div class="col-md-3 sources hidden-xs">
+                <h2> Les sources </h2>
+
+            </div>
+        </div><!--end row-->
+        <div class="row">
+            <div class="col-md-9 text-left">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Question 1</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <p>  Au premier abord j’avais écrit dans la méthode main une boucle tant que,
+                            qui demande sur une ligne de commande une entrée à l’utilisateur pour la transformer
+                            en entier et après en Celsius. Avec cette approche j’avais créé une méthode lireString(). </p>
+                        <p>Puis j’ai remarqué que les entrées demandées dans l’exercice sont les arguments de la méthode main.
+                            Pour récupérer le string et le transformer en entier j’ai créé la méthode transformString(String entree),
+                            copié ci-dessous :</p>
+                        <p>
+                        <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'><strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>static</font></strong>&nbsp;<strong><font color='#7f0055'>int</font></strong>&nbsp;transformString(String&nbsp;entree){
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>int</font></strong>&nbsp;fahrenheit&nbsp;=&nbsp;0;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>try</font></strong>{
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fahrenheit&nbsp;=&nbsp;Integer.parseInt(entree);
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<strong><font color='#7f0055'>catch</font></strong>(NullPointerException&nbsp;e){
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<strong><font color='#7f0055'>catch</font></strong>(NumberFormatException&nbsp;e){
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<font color='#2a00ff'>"Ceci&nbsp;n'est&nbsp;pas&nbsp;un&nbsp;bon&nbsp;entier&nbsp;:"</font>+entree);
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//throw&nbsp;e;
+                            </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;fahrenheit;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+
+                        </p>
+                        <p>	Ensuite j’ai rempli la méthode fahrenheitEnCelsius(int f) qui permet de transformer un entier,
+                            qui représente le degré en fahrenheit, à un degré en Celsius.
+                        </p>
+                        <p>		<div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>static</font></strong>&nbsp;<strong><font color='#7f0055'>float</font></strong>&nbsp;fahrenheitEnCelsius(<strong><font color='#7f0055'>int</font></strong>&nbsp;f)&nbsp;{
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>float</font></strong>&nbsp;temperature&nbsp;=&nbsp;(((<strong><font color='#7f0055'>float</font></strong>)f&nbsp;-&nbsp;32)*5)/9;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>return</font></strong>&nbsp;temperature;&nbsp;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                        </p>
+                        <p>Pour la deuxième question j’ai mis en place quelques tests pour vérifier
+                            le bon fonctionnement des méthodes farenheitEnCelsius et transformString.
+                            Pour l'instant je n'utilise pas les méthode setUp() et TearDown().
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 sources">
+
+                <a href="question1/FahrenheitCelsius.java"> <button type="button" class="btn btn-info">Question 1 : FahrenheitCelsius</button></a>
+                <a href="question1/FahrenheitCelsiusTest.java"> <button type="button" class="btn btn-info">Question 1 : Test</button></a>
+
+            </div>
+        </div><!--end row -->
+        <div class="row">
+            <div class="col-md-9 text-left">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Question 2</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>J’ai remarqué que j’ai déjà géré l’exception dans la première question, car cela me paraissait plus simple d’intégrer dès le départ.
+                            Or dans la première question je retrouvais l'exception "NumberFormatException" dans la méthode transformString.
+                            Pour cette question j’ai renvoyé l’exception une nouvelle fois dans la méthode main pour afficher le message e.getMessage(). </p>
+                        </p>
+                        <p>Je voulais tester pour la question 2 les méthodes setUp() et tearDown(),
+                            or la création d’un objet FahrenheitCelsius ne pourrait pas me servir,
+                            car toutes les méthodes dans la classe FahrenheitCelsius sont statique.
+                            Donc il ne me parait pas pertinent de mettre en place ces deux méthodes.
+                        </p>
+                        <p>J’ai décidé de faire un plan de tests pour couvrir le maximum de cas dans l’exercice :
+                        <ol>
+                            <li>transform String
+                                <ul>
+                                    <li>Si l'entrée est un char</li>
+                                    <li>Si l'entrée est un float</li>
+                                    <li>Si l'entrée est un double</li>
+                                    <li>Si l'entrée est un long String avec des entiers intégrés</li>
+                                </ul>
+                            </li>
+                            <li>fahrenheitEnCelsius
+                                <ul>
+                                    <li>Comme cette méthode prend en paramètre seulement des entier, je testerai seulement
+                                        la bonne tranduction de fahrenheit En Celsius </li>
+
+                                </ul>
+                            </li>
+                            <li>la gestion de l'exception "NumberFormatException"
+                                <ul>
+                                    <li>le comportement de la méthode main en cas d'exception </li>
+                                    <li>le comportement de la méthode transformString en cas d'exception </li>
+
+                                </ul>
+                            </li>
+                        </ol>
+                        </p>
+                        <p>
+                            Pour tester le bon déclenchement des Exceptions j’ai appliqué des tests qui vérifie le type d’exception, ci-dessous
+                            un exemple qui ne déclenche pas d’exception et un exemple qui déclenche l’exception.
+                            </br>
+                        <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;&nbsp;&nbsp;<font color='#2040a0'>/**
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Test&nbsp;de&nbsp;l'exception&nbsp;si&nbsp;celle-ci&nbsp;n'est&nbsp;pas&nbsp;déclenché.
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@Test</strong>
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@throws</strong>&nbsp;NumberFormatException
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;test_transformString_int()<strong><font color='#7f0055'>throws</font></strong>&nbsp;NumberFormatException{
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NumberFormatException&nbsp;resultat&nbsp;=&nbsp;<strong><font color='#7f0055'>null</font></strong>;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>try</font></strong>{
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>int</font></strong>&nbsp;test&nbsp;=&nbsp;question2.FahrenheitCelsius.transformString(<font color='#2a00ff'>"5"</font>);
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<strong><font color='#7f0055'>catch</font></strong>(NumberFormatException&nbsp;e){
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resultat&nbsp;=&nbsp;e;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"Exception&nbsp;est&nbsp;déclencher"</font>,&nbsp;NumberFormatException.<strong><font color='#7f0055'>class</font></strong>.equals(resultat.getClass()));
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertNull(<font color='#2a00ff'>"Exception&nbsp;n'est&nbsp;pas&nbsp;déclencher"</font>,&nbsp;resultat);
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+                        <br />
+                        <br />
+                        <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;<font color='#2040a0'>/**
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Le&nbsp;test&nbsp;de&nbsp;la&nbsp;méthode&nbsp;transform&nbsp;String&nbsp;avec&nbsp;une&nbsp;entrée&nbsp;n'est&nbsp;pas&nbsp;correcte=>&nbsp;String&nbsp;représente&nbsp;un&nbsp;float/double.
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;déclenche&nbsp;exception.
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@Test</strong>(expected&nbsp;=&nbsp;NumberFormatException.class)
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<strong>@throws</strong>&nbsp;NumberFormatException
+                                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</font>
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;test_transformString_double()<strong><font color='#7f0055'>throws</font></strong>&nbsp;NumberFormatException{
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NumberFormatException&nbsp;resultat&nbsp;=&nbsp;<strong><font color='#7f0055'>null</font></strong>;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>try</font></strong>{
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>double</font></strong>&nbsp;d=&nbsp;4.5;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='#3f7f5f'>//Je&nbsp;ne&nbsp;peux&nbsp;pas&nbsp;compiler&nbsp;la&nbsp;méthode&nbsp;suivante&nbsp;avec&nbsp;d
+                            </font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>int</font></strong>&nbsp;test&nbsp;=&nbsp;question2.FahrenheitCelsius.transformString(<font color='#2a00ff'>"4.5"</font>);
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<strong><font color='#7f0055'>catch</font></strong>(NumberFormatException&nbsp;e){
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resultat&nbsp;=&nbsp;e;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assertTrue(<font color='#2a00ff'>"Exception&nbsp;est&nbsp;déclencher"</font>,&nbsp;NumberFormatException.<strong><font color='#7f0055'>class</font></strong>.equals(resultat.getClass()));
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;}<div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 sources">
+                <a href="question2/FahrenheitCelsius.java"> <button type="button" class="btn btn-info">Question 2 : FahrenheitCelsius</button></a>
+                <a href="question2/FahrenheitCelsiusTest.java"> <button type="button" class="btn btn-info">Question 2 :Test</button></a>
+
+            </div>
+        </div><!--end row-->
+        <div class="row">
+            <div class="col-md-9 text-left">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Question 3</h3>
+                    </div>
+                    <div class="panel-body">
+                        Le troisième exercice était une production graphique des méthodes créées précédemment.
+                        Puisque les méthodes créées étaient statiques l’utilisation de ces méthodes n’est pas très organisé et surtout
+                        avec l’ajout de teste du zéro absolu directement dans la méthode de l’applet et
+                        non pas dans la méthode de conversion en Celsius.
+                        <div style='background:#FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>&nbsp;&nbsp;<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font color='#7f0055'>void</font></strong>&nbsp;actionPerformed(&nbsp;ActionEvent&nbsp;ae&nbsp;){
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;valeur&nbsp;=&nbsp;entree.getText();
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>int</font></strong>&nbsp;fahrenheit&nbsp;=&nbsp;0;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>float</font></strong>&nbsp;celsius&nbsp;=&nbsp;0F;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>try</font></strong>{
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fahrenheit&nbsp;=&nbsp;question2.FahrenheitCelsius.transformString(valeur);&nbsp;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;celsius&nbsp;=&nbsp;question2.FahrenheitCelsius.fahrenheitEnCelsius(fahrenheit);&nbsp;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>if</font></strong>(celsius&nbsp;<&nbsp;-273.1F)&nbsp;{
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;celsius&nbsp;=&nbsp;-273.1F;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color='#7f0055'>double</font></strong>&nbsp;resultat&nbsp;=&nbsp;(<strong><font color='#7f0055'>int</font></strong>)(celsius*10)/10.0&nbsp;;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sortie.setText(&nbsp;Double.toString(&nbsp;resultat&nbsp;)&nbsp;);
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<strong><font color='#7f0055'>catch</font></strong>(NumberFormatException&nbsp;e){
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sortie.setText(&nbsp;<font color='#2a00ff'>"error&nbsp;!&nbsp;"</font>&nbsp;);
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br/><div style='text-align:right;BORDER-TOP: #ccc 1px dashed'><a href="http://www.togotutor.com/code-to-html/java-to-html.php" target="_blank">Code Formatted by ToGoTutor</a></div></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 sources">
+
+                <a href="question3/AppletteFahrenheit.java"> <button type="button" class="btn btn-info">Question 3 : AppletteFahrenheit</button></a>
+
+
+            </div>
+        </div><!--end row-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-left">Conclusion, bibliographie et remarques :</h3>
+                    </div>
+                    <div class="panel-body text-left">
+                        <p>
+                            Ce Tp était très agréable, surtout avec la production graphique de l’applet.
+                            J'ai eu quelques soucies concernant le changement de la couleur de l'applet, je voulais créer des tests pour vérifier
+                            le bon fonctionnement du changement de couleur mais je n'avais pas le temps pour le faire.
+                            Malheuresement, je n'ai pas réussie  à ajouter l'applet à cette page html.
+                        </p>
+                        <p>
+                            Pour l’instant l’utilisation de méthode statique facilite l’exécution du TP mais
+                            l’architecture du code n’est pas très poussée. J’attends l’utilisation des patterns
+                            pour prendre plus de temps sur la partie de conception de l’architecture du code.
+                        </p>
+                        <p>En plus, j’ai essayé cette fois de compléter la documentation
+                            du code mais je ne suis pas arrivé à une exécution de la javadoc_evaluation sans commentaire.
+                            J’espère qu’avec les prochain TP je trouve le moyen de compléter cette partie plus facilement.
+                        </p>
+
+                    </div>
+                </div>
+
+
+
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</div>
+</div><!--starter template-->
+
+</div><!-- /.container -->
+{%   endblock content %}

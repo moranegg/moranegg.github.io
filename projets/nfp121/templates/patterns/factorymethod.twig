@@ -1,0 +1,83 @@
+{%  extends 'main.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+      <div class="starter-template">
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<h2 >FACTORY METHOD </h2>
+					<p>
+					l'objectif  du pattern FACTORY METHOD  est de d'instancier des objets dont le type est dérivé d'un type abstrait.
+					La classe exacte de l'objet n'est donc pas connue par l'appelant.
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 text-left">
+
+					<img src="../images/FactoryMethod.jpg" />
+					<img src="../images/FactoryMethodEx.jpg" />
+
+
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-12 text-left">
+					<h3>Exemples :</h3>
+					<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>interface</span> Factory&lt;T&gt; <span style='font-weight:bold;color:#D3171B'>{</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> T create();
+<span style='font-weight:bold;color:#D3171B'>}</span></pre>
+<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> TreeSetFactory&lt;T <span style='font-weight:bold;color:#7B0052;'>extends</span> Comparable&lt;T&gt;&gt; <span style='font-weight:bold;color:#7B0052;'>implements</span> Factory&lt;Set&gt;<span style='font-weight:bold;color:#D3171B'>{</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Set create()<span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>new</span> TreeSet&lt;Comparable&lt;T&gt;&gt;();
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+<span style='font-weight:bold;color:#D3171B'>}</span></pre>
+<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> HashSetFactory&lt;T&gt; <span style='font-weight:bold;color:#7B0052;'>implements</span> Factory&lt;Set&gt;<span style='font-weight:bold;color:#D3171B'>{</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Set create()<span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>new</span> HashSet&lt;T&gt;();
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+<span style='font-weight:bold;color:#D3171B'>}</span></pre>
+<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> Tests <span style='font-weight:bold;color:#7B0052;'>extends</span> junit.framework.TestCase <span style='font-weight:bold;color:#D3171B'>{</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> test1(question3.Factory&lt;Set&gt; f) <span style='font-weight:bold;color:#7B0052;'>throws</span> Exception <span style='font-weight:bold;color:#D3171B'>{</span>
+        Set&lt;Integer&gt; set = f.create();
+        <span style='font-weight:bold;color:#7B0052;'>for</span> (<span style='font-weight:bold;color:#7B0052;'>int</span> i = 20; i &gt; 0; i--)
+            set.add(i);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> test_Creation() <span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>try</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+            test1(<span style='font-weight:bold;color:#7B0052;'>new</span> TreeSetFactory&lt;Integer&gt;());
+            test1(<span style='font-weight:bold;color:#7B0052;'>new</span> HashSetFactory&lt;Integer&gt;());
+        <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>catch</span> (NoSuchMethodError e) <span style='font-weight:bold;color:#D3171B'>{</span>
+            fail(<span style='color:#2A00FF'>"NoSuchMethodError : "</span> + e.getMessage());
+        <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>catch</span> (Exception e) <span style='font-weight:bold;color:#D3171B'>{</span>
+            fail(<span style='color:#2A00FF'>" exception inattendue : "</span> + e.getMessage());
+        <span style='font-weight:bold;color:#D3171B'>}</span>
+
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> test_compare()<span style='font-weight:bold;color:#D3171B'>{</span>
+        question3.Factory&lt;Set&gt; ft1 = <span style='font-weight:bold;color:#7B0052;'>new</span> TreeSetFactory&lt;String&gt;();
+        question3.Factory&lt;Set&gt; fh2 = <span style='font-weight:bold;color:#7B0052;'>new</span> HashSetFactory&lt;String&gt;();
+        question3.Factory&lt;Set&gt; fh3 = <span style='font-weight:bold;color:#7B0052;'>new</span> HashSetFactory&lt;String&gt;();
+        Set&lt;String&gt; set = ft1.create();
+        fh2.create();
+        fh3.create();
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+
+<span style='font-weight:bold;color:#D3171B'>}</span></pre>
+
+					</div>
+				</div>
+			</div>
+
+	</div><!--starter template-->
+
+    </div><!-- /.container -->
+
+
+{% endblock content %}
