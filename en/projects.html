@@ -1,7 +1,4 @@
-<?php include 'head.html';?>
-<?php include 'menu.html';?>
-
-
+<
 <div class="container page ">
 
 <!--  start contenu de la page-->
@@ -11,31 +8,165 @@
 <div class="row">
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <!--open project, to close delete "in" in class collapse-->
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingEight">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
-                        <span class="badge"> 2015</span>
-                        <span class="space-left text-uppercase">Operations Research (OR) project </span>
-                        <h6 class="pull-right hidden-xs"> java / GLPK </h6>
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseEight" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingEight">
-                <div class="panel-body">
-                    <?php include 'projects/affectationRO.html';?>
-                </div>
-            </div>
-        </div>
-        <!--closed projects-->
-				<?php
-				$projets = array ('affectationRO', 'dressin', 'nfp121', 'stage','store','cyc', 'battleship');
-				for ($numero = 0; $numero < 5; $numero++)
-				{
-				    //echo $projets[$numero] . '<br />'; // affichera $prenoms[0], $prenoms[1] etc.
-				}
 
-				?>
+				<!--ALASCA-->
+				<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingAlasca">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseAlasca" aria-expanded="true" aria-controls="collapseAlasca">
+					  <span class="badge"> 2017</span>
+						<span class="space-left text-uppercase">Creating context for decision making in autonomics computing systems with collaborative reinforcement learning</span>
+					  <h6 class="pull-right hidden-xs"> research article</h6>
+					</a>
+				  </h4>
+				</div>
+				<div id="collapseAlasca" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingAlasca">
+				  <div class="panel-body" id="alasca">
+
+				  </div>
+				</div>
+			  </div>
+				  <!--closed projects-->
+				<!--GRAL -->
+				<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingGral">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseGral" aria-expanded="false" aria-controls="collapseGral">
+					  <span class="badge"> 2017</span>
+						<span class="space-left text-uppercase">AVL, RRB vectors and Finger trees :Immutable dtata structures</span>
+					  <h6 class="pull-right hidden-xs">C / research article</h6>
+					</a>
+				  </h4>
+				</div>
+				<div id="collapseGral" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingGral">
+				  <div class="panel-body" id="gral">
+
+				  </div>
+				</div>
+			  </div>
+				<!-- AAGA2-->
+				<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingAAGA2">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseAAGA2" aria-expanded="false" aria-controls="collapseAAGA2">
+					  <span class="badge"> 2017</span>
+						<span class="space-left text-uppercase">Tree structure generation</span>
+					  <h6 class="pull-right hidden-xs"> ruby </h6>
+					</a>
+				  </h4>
+				</div>
+				<div id="collapseAAGA2" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingAAGA2">
+				  <div class="panel-body" id="aaga2">
+
+				  </div>
+				</div>
+			  </div>
+				<!--MusExpress -->
+				<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingMusExpress">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseMusExpress" aria-expanded="false" aria-controls="collapseMusExpress">
+					  <span class="badge"> 2016</span>
+						<span class="space-left text-uppercase">MusExpress : Web application</span>
+					  <h6 class="pull-right hidden-xs"> java / J2EE / javascript / html / css</h6>
+					</a>
+				  </h4>
+				</div>
+				<div id="collapseMusExpress" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingMusExpress">
+				  <div class="panel-body" id="musexpress">
+
+				  </div>
+				</div>
+			  </div>
+
+				<!--AAGA1- CDS -->
+				<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingCDS">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseCDS" aria-expanded="false" aria-controls="collapseCDS">
+					  <span class="badge"> 2016</span>
+						<span class="space-left text-uppercase">Connected dominating set : an algorithm</span>
+					  <h6 class="pull-right hidden-xs"> java</h6>
+					</a>
+				  </h4>
+				</div>
+				<div id="collapseCDS" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingCDS">
+				  <div class="panel-body" id="cds">
+
+				  </div>
+				</div>
+			  </div>
+				<!-- PSTL-Visualisation de graphes serie- parallele-->
+				<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingPSTL">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapsePSTL" aria-expanded="false" aria-controls="collapsePSTL">
+					  <span class="badge"> 2016</span>
+						<span class="space-left text-uppercase">Series-parallel graph : visualisation</span>
+					  <h6 class="pull-right hidden-xs">java </h6>
+					</a>
+				  </h4>
+				</div>
+				<div id="collapsePSTL" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingPSTL">
+				  <div class="panel-body" id="pstl">
+
+				  </div>
+				</div>
+			  </div>
+				<!--ALGAV- data structures -->
+				<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingALGAV">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseALGAV" aria-expanded="false" aria-controls="collapseALGAV">
+					  <span class="badge"> 2015</span>
+						<span class="space-left text-uppercase">L'arbre de la Briandais et le Trie Hybride : implémentation de structure de données</span>
+					  <h6 class="pull-right hidden-xs">java </h6>
+					</a>
+				  </h4>
+				</div>
+				<div id="collapseALGAV" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingALGAV">
+				  <div class="panel-body" id="algav">
+
+				  </div>
+				</div>
+			  </div>
+				<!--MOGPL -->
+
+				<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingMOGPL">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseMOGPL" aria-expanded="false" aria-controls="collapseMOGPL">
+					  <span class="badge"> 2015</span>
+						<span class="space-left text-uppercase">La ballade du robot</span>
+					  <h6 class="pull-right hidden-xs"> java</h6>
+					</a>
+				  </h4>
+				</div>
+				<div id="collapseMOGPL" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingMOGPL">
+				  <div class="panel-body" id="mogpl">
+
+				  </div>
+				</div>
+			  </div>
+				<!--Affectation RO -->
+				<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingEight">
+								<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+												<span class="badge"> 2015</span>
+												<span class="space-left text-uppercase">Operations Research (OR) project </span>
+												<h6 class="pull-right hidden-xs"> java / GLPK </h6>
+										</a>
+								</h4>
+						</div>
+						<div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+								<div class="panel-body" id="affectationRO">
+
+								</div>
+						</div>
+				</div>
+
+				<!--dressin -->
 				<div class="panel panel-default">
 				<div class="panel-heading" role="tab" id="headingDressin">
 				  <h4 class="panel-title">
@@ -47,8 +178,8 @@
 				  </h4>
 				</div>
 				<div id="collapseDressin" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingDressin">
-				  <div class="panel-body">
-					<?php include 'projects/dressin.html';?>
+				  <div class="panel-body" id="dressin">
+
 				  </div>
 				</div>
 			  </div>
@@ -63,8 +194,8 @@
 		  </h4>
 		</div>
 		<div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
-		  <div class="panel-body">
-			<?php include 'projects/nfp121.html';?>
+		  <div id="nfp121" class="panel-body" >
+
 		  </div>
 		</div>
 	  </div>
@@ -80,8 +211,8 @@
 		  </h4>
 		</div>
 		<div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo">
-		  <div class="panel-body">
-			<?php include 'projects/stage.html';?>
+		  <div class="panel-body" id="stage">
+
 		  </div>
 		</div>
 	  </div>
@@ -98,8 +229,8 @@
 		  </h4>
 		</div>
 		<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-		  <div class="panel-body">
-			<?php include 'projects/store.html';?>
+		  <div class="panel-body" id="store">
+
 		  </div>
 		</div>
 	  </div>
@@ -114,8 +245,8 @@
 		  </h4>
 		</div>
 		<div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-		  <div class="panel-body">
-			<?php include 'projects/table.html';?>
+		  <div class="panel-body" id="table">
+
 		  </div>
 		</div>
 	  </div>
@@ -130,8 +261,7 @@
 		  </h4>
 		</div>
 		<div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
-		  <div class="panel-body">
-			<?php include 'projects/cyc.html';?>
+		  <div class="panel-body" id="cyc">
 
 		  </div>
 		</div>
@@ -147,8 +277,8 @@
 		  </h4>
 		</div>
 		<div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
-		  <div class="panel-body">
-			<?php include 'projects/battleship.html';?>
+		  <div class="panel-body" id= "battleship">
+
 
 		  </div>
 		</div>
@@ -157,12 +287,16 @@
 </div>
 
 
+</div>
 
 
+<script>
+var projets = ['affectationRO', 'dressin', 'nfp121', 'stage','store','cyc', 'battleship', 'table', 'alasca', 'gral', 'cds', 'musexpress', 'aaga2','pstl', 'algav', 'mogpl'];
+for (i = 0; i < projets.length ; i++)
+{
+	var tmp = projets[i];
+	console.log(tmp);
+	$("#"+tmp).load("en/projects/"+tmp+".html");
+}
 
-
-
-
-
- 	</div>
-<?php include'footer.html';?>
+</script>
