@@ -1,0 +1,14 @@
+  {
+    "@context": "http://schema.org/",
+    "@type": "Person",
+     "identifier": "orcid.org/0000-0002-9777-5560",
+    "alumniof": "UPMC",
+    "birthDate": "01-12-1987",
+    "birthPlace": "Paris",
+    "email": "mailto:morane.gg@gmail.com",
+    "image": "photos/me.jpg",
+    "jobTitle": "Software engineering intern",
+    "name": "Morane Ottilia Gruenpeter",
+    "url": "https://moranegg.github.io/",
+    "worksFor": "Software Heritage"
+  }
