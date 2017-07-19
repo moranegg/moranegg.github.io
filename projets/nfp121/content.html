@@ -1,0 +1,516 @@
+
+    <div class="container">
+
+        <div class="starter-template">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h2 >NFP 121 - Programmation avancée </h2>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-9 text-left">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 1</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <p> En cours nous avons abordé les sujets suivants qui concernent les langages objet:
+                            <ul>
+                                <li>Polymorphisme
+                                    <ol>
+                                        <li>ad'hoc : surcharge (overloading), le choix de la méthode est résolu statiquement </li>
+                                        <li>inclusion : redéfinition, masquage (overriding), le choix de la méthode est résolu dynamiquement en fonction du type de l'objet receveur</li>
+                                        <li>paramétrique ou généricité : définition d'un modèle de procédure (statiquement) </li>
+                                    </ol>
+                                </li>
+                                <li>Java : un langage objet:
+                                    <ol>
+                                        <li>"simple" </li>
+                                        <li>"sûr"</li>
+                                        <li>indépendant d'une architecture </li>
+                                        <li>environement riche</li>
+                                        <li>technologie "transversale"</li>
+
+                                    </ol>
+                                </li>
+                            </ul>
+
+                            </p>
+
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_1_introduction.pdf">Lien vers le poly du cours </a>
+                                <br />
+                                <a href="TP/tp1/Tp1.html">Le TP1: l'environnement de programmation BlueJ -</a><a href="{{ siteUrl('tp1') }}">La solution</a>
+                                <br />
+                                <a href="http://jfod.cnam.fr/NFP121/00-OOP-Intro/index.html">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 2</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                La visibilité : private | public | protected, les données d'instances sont privées et méthodes sont publiques <strong>(copier règles de visibilité)</strong>
+                                <br />
+                                Declaration d'instance et création, le constructeur a le même nom que la classe, oblige une création normalisé de l'instance.
+                                <br />
+                                La référence d'un objet est l'adresse
+                            <ul>
+                                Destructeurs et ramasse miettes
+                                <li> voir java.lang.System.gc() pour déclancher le ramasse miettes</li>
+                                <li> n'est pas a la charge du programmeur </li>
+
+                            </ul>
+                            Affectation polymorphe: toute classe hérite de la classe object, le test if obj instanceof notreClasse vérifie si mon objet est
+                            une instance de la classe tester.
+                            <br />
+                            pour la rédifinition de la méthode equals qui appartient à Object,
+                            il faut faire un @override de la méthode pour ne pas vérifier seulement le pointeur (Exactement la même signature)
+                            <li> supertype => subtypes</li>
+                            <li> apparent type </li>
+                            classes imbriqué: classes interne , elle a accès au variables englobente (ClasseEnglobente.this.saMethode)
+                            <br />
+                            variable x = new ClasseEnglobente.ClasseImbriqué;
+                            <br />
+                            Classe anonyme: en paramètre d'une méthode, lopération dans cette classe dépend de l'utilisateur, une définition à la volé.
+                            <br />
+                            Packetage
+                            <br />
+                            L'interface : Protocole q'une classe doit respecter, une classe qui implémente une interface est obligé a respecter
+                            les règles de cette dernière.
+                            <br />
+                            interface Enumeration : hasMoreElements,
+
+                            <p>Classe incomplète ou abstraite : l'implémentation est laissé à la responsabilité de sous-classes. Pas de création d'instances
+                                possibles.
+
+                            </p>
+                            <br />
+                            Exceptions: instance de la classe Throwable ( try, catch ExceptionType e , finally)
+                            </p>
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_2_une_classe">Lien vers le poly du cours </a>
+                                <br />
+                                <a href="TP/tp2/Tp2.html">Le TP2 -</a> <a href="{{ siteUrl('tp2') }}">La solution</a>
+                                <br />
+                                <a href="http://jfod.cnam.fr/NFP121/02-interfaces/index.html">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 3 : plusieurs classes, héritage, polymorphisme</h3>
+
+                        </div>
+                        <div class="panel-body ">
+                            <p>type déclaré pour apparent type et type constaté pour actual type ( à l'exécution )</p>
+                            <p>Covaraince: aussi avec les interfaces, le type de retour de la méthode redéfinie peut être un sous-type de celui de la classe
+                                mère<br />
+                                A a1= ...; a1 peut avoir une instance  de toute sous-classe de A
+                            </p>
+                            <p>Interface et héritage
+                                Quel sont les protocoles qu'une certaine classe doit respécter<br />
+                                java.lang.Cloanable => interface
+                                java.lang.Serializable => interface
+                            </p>
+                            <p>
+                                Adaptateur
+                            </p>
+                            <p>
+                                Proxy
+                            </p>
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_3_1_plusieurs_classes.pdf">Lien vers le poly du cours </a>
+                                <br />
+                                <a href="TP/tp3/Tp3.html">Le TP3 - </a><a href="{{ siteUrl('tp3') }}">La solution</a>
+                                <br />
+                                <a href="http://jfod.cnam.fr/NFP121/03-Progr-EVENEMENTIELLE/index.html">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 4 : Patron observateur et MVC</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                Observateur observe l'observé. Un observateur peut observé plusieurs observable, et chaque observable peut être
+                                observé par plusieurs observateurs. Utilisation de la class Observable dans la documentation java.
+                                <br/>
+                                <a href="#">java.util.Observer</a>
+                                <br />
+                                <a href="#">java.util.Observable</a>
+                                Dans l'exemple vue en cours, la classe entier est un modèle et le classe observateur est une vue.
+                            <p>
+                                Observateur et Listener c'est la m^me chose:
+                            <ol>
+                                <li>addXXXXListener => addActionListener</li>
+                                <li>addXXXXListener => addMouseListener</li>
+                            </ol>
+                            </p>
+                            ajouter le cycle MVC <br/>
+                            ajouter MVC doc de sun
+                            <br/>
+                            </p>
+                            <p>
+                                Vérifier IHM
+                            </p>
+                            <p>
+                                Swing : composite pattern et Strategy pattern
+                            </p>
+
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_4_2_swing_MVC.pdf">Lien vers le poly du cours </a>
+                                <br />
+                                <a href="TP/tp4/Tp4.html">Le TP4 - </a> <a href="{{ siteUrl('tp4') }}">La solution</a>
+                                <br />
+                                <a href="#">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 5_1 : Les collections</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                les collections permet une organisation des données.</br>
+
+                            </p>
+                            <a href="http://java.sun.com/docs/books/tutorial/collections/">Tutoriel de sun</a>
+                            <p>
+                            <ul>
+                                <li> Template Methode- réalisation de certaine méthodes aux sous-classes  </li>
+                                <li> Le patron Iterator- permet de parcourir une structure sans savoir le type des éléments de cette structure.</li>
+                                <li> Condition\"<"T">" condition : un usage possible <br />
+                                    public interface Condition"<"T">"{public boolean isTrue(T t);
+                                </li>
+                                <li> La classe incomplète : AbstractCollection</li>
+                                <li>Les méthodes dans collection
+                                    <ul>
+                                        <li>removeAll = Minus</li>
+                                        <li>addAll = union</li>
+                                        <li>retainAll = intersection</li>
+                                    </ul>
+                                </li>
+                                <li> ListIterator est l'inverse d'Iterator</li>
+                                <li> L'interface SortedSet : un ensemble où l'on utilise la relation d'ordre des éléments
+                                    <br />Comprarator - relation d'ordre pour la structure
+                                    <br />Comparable -relation d'ordre entre les élémnets.
+                                </li>
+
+                            </ul>
+                            <p>
+                            <h4> Factory pattern</h4>
+                            L'implémentation est choisi par le client à l'execution.</br>
+                            fabriqueStandard() ou fabriqueOrdonné </br>
+                            <a href="martinfowler.com/articles/injection.html">forme of dependency injenction by Martin Fowler</a>
+                            </p>
+                            </p>
+
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_5_1_les_collections.pdf">Lien vers le poly du cours </a>
+                                <br />
+                                <a href="TP/tp5/Tp5.html">Le TP5 - </a><a href="{{ siteUrl('tp5') }}">La solution</a>
+                                <br />
+                                <a href="http://jfod.cnam.fr/NFP121/05-GENERICITE-COLLECTIONS/index.html">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 5_2 : La généricité</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                La covariance : quand un élément appartient à une sous-classe, on peut redéfinir la méthode
+                                n'ayant pas la même signature. <br />
+                                public Number f() => public Integer f()// quand Integer est une classe fille de Number.
+                            </p>
+                            <p>
+                                Utilisation d'un Joker ? => T
+                            </p>
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_5_2_la_genericite.pdf">Lien vers le poly du cours </a>
+                                <br />
+
+                                <br />
+                                <a href="#">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 6_1 : Composite_Interpreteur_Visiteur</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h4>Le patron Composite</h4>
+                            <p>
+                                La racine c'est un composant, le composite est aussi un composant, mais le composite et aussi constitué de composants
+                                <br />
+                                Celle-ci est une structure de données récursive.
+                                <br />
+                                Le client manipule qu'un seul type, une référence vers tout les composant.
+                            </p>
+                            <h4>Le patron Interpréteur</h4>
+                            <p>
+                                Mettre une méthode interpreter dans chaque noeud
+                            </p>
+                            <h4>Le patron Visiteur</h4>
+                            <p>
+                                Si on sait pas ce que le client veut, on lui donne accès à une grammair pour qu'il puisse le faire </br>
+                                =>Le problème change de main; proposer le visiteur qui convient, l'arbre ne changera pas. <br />
+                                Ce noeud déclanche la bonne méthode dans l'arbre.
+                            </p>
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_6_1_Composite_Interpreteur_Visiteur.pdf">Lien vers le poly du cours </a>
+                                <br />
+                                <a href="TP/tp6/Tp6.html">Le TP6 - </a><a href="{{ siteUrl('tp6') }}">La solution</a>
+                                <br />
+                                <a href="#">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 6_2 : Memento, Command, Template Method</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h4>Le patron Memento</h4>
+                            <p>
+                                Sauvegarde et restitution de l'état interne d'un objet sans violer le principe d'encapsulation.
+                                Prévoir les méthodes dès la conception de l’ «Originator»
+                                –clone, copie en profondeur, Itérateur, Visiteur, ???, …
+                            </p>
+                            <h4>Le patron Command</h4>
+                            <p>
+                                Couplage faible opérations abstraites/réalisations concrètes. <br />
+                            </p>
+                            <h4>Le Template Method</h4>
+                            <p>
+
+                            </p>
+
+
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_6_1_Composite_Interpreteur_Visiteur.pdf">Lien vers le poly du cours </a>
+                                <br />
+                                <a href="TP/tp_commit/Tp_commit.html">Le TP_commit - </a><a href="{{ siteUrl('tp_commit') }}">La solution</a>
+                                <br />
+                                <a href="#">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 7 : L'introspection</h3>
+                        </div>
+                        <div class="panel-body">
+
+
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_07_introspection.pdf">Lien vers le poly du cours </a>
+                                <br />
+                                <a href="TP/tp7/Tp7.html">Le TP7 - </a><a href="{{ siteUrl('tp7') }}">La solution</a>
+                                <br />
+                                <a href="#">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 8 : Le patron décorateur et IO</h3>
+                        </div>
+                        <div class="panel-body">
+
+
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_08_1_Decorateur.pdf">Lien vers le poly du cours- Décorateur </a>
+                                <br />
+                                <a href="Cours/poly/NFP121_cours_08_2_IO.pdf">Lien vers le poly du cours- IO </a>
+                                <br/>
+                                <a href="TP/tp8/Tp8.html">Le TP8 - </a><a href="{{ siteUrl('tp8') }}">La solution</a>
+                                <br />
+                                <a href="#">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 9: XML et java (SAX et JDOM)</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p> Persistance d’un objet et la “lisibilité” de cet objet ou la transformation des objets en java balises d'XML
+                                pour facilité leurs lecture/écriture d'une utilisation à une autre.
+                            </p>
+                            <p>
+                            <h4>DTD- Document Type Definition</h4>
+                            Elle permet de vérifier qu'un document XML est conforme à une syntaxe donnée (à une grammaire)
+                            <br />
+                            Dans un document XML, dans le cas de l'utilisation d'une DTD externe,
+                            on doit alors avoir :standalone="no"
+                            Puis l'élément \<\!DOCTYPE elt_racine SYSTEM "filename.dtd"
+
+                            </p>
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_09_XML.pdf">Lien vers le poly du cours </a>
+                                <br />
+
+                                <br />
+                                <a href="#">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cours 10: programmation concurente</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                Plusieurs Threads mais un seul processeur (ordonnancement).
+                                <br />
+                                Thread est une classe java.
+                                <br/>
+                                Thread unThread = new Thread();
+                                <br/>
+                                unThread.start();
+                                <br />
+                                unThread.run();
+
+                            </p>
+                            <p>
+                                <a href="Cours/poly/NFP121_cours_10.pdf">Lien vers le poly du cours </a>
+                                <br />
+
+                                <a href="#">Le TD</a>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">bibliographie et remarques :</h3>
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+                <div class="col-xs-3 sources ">
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <h2> docummentation </h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="http://dnf3.cnam.fr/offre2014/pdf/ueNFP121.pdf"> <button type="button" class="btn btn-info">fiche descriptive</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="http://jfod.cnam.fr/NFP121/"> <button type="button" class="btn btn-info">site nfp121</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="http://jfod.cnam.fr/agenda1/"> <button type="button" class="btn btn-info">agenda</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="http://jfod.cnam.fr/jnews/"> <button type="button" class="btn btn-info">jnews</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="http://jfod.cnam.fr/progAvancee/"> <button type="button" class="btn btn-info">instruction tp</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <h2> les patterns </h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href= "{{ siteUrl('adapter')}}"> <button type="button" class="btn btn-info">ADAPTER</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="{{ siteUrl("proxy") }}"> <button type="button" class="btn btn-info">PROXY</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="{{ siteUrl("composite") }}"> <button type="button" class="btn btn-info">COMPOSITE</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="{{ siteUrl("decorator") }}"> <button type="button" class="btn btn-info">DECORATOR</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="{{ siteUrl("factorymethod") }}"> <button type="button" class="btn btn-info">FACTORY METHOD</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="{{ siteUrl("singleton") }}"> <button type="button" class="btn btn-info">SINGLETON</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="{{ siteUrl("memento") }}"> <button type="button" class="btn btn-info">MEMENTO</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="{{ siteUrl("observer") }}"> <button type="button" class="btn btn-info">OBSERVER</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="{{ siteUrl("command") }}"> <button type="button" class="btn btn-info">COMMAND</button></a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="{{ siteUrl("templatemethod") }}"> <button type="button" class="btn btn-info">TEMPLATE METHOD</button></a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="{{ siteUrl("iterator") }}"> <button type="button" class="btn btn-info">ITERATOR</button></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <a href="{{ siteUrl("visitor") }}"> <button type="button" class="btn btn-info">VISITOR</button></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div><!--starter template-->
+
+    </div><!-- /.container -->
