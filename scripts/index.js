@@ -36,6 +36,9 @@ var router = {
 		contact: function(){
       $("#includedContent").load("en/contact.html");
 		},
+    research: function(){
+      $("#includedContent").load("en/research.html");
+		},
     projects: function(){
       $("#includedContent").load("en/projects.html");
 		},

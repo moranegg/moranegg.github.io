@@ -1,0 +1,82 @@
+<
+<div class="container page ">
+
+<!--  start contenu de la page-->
+<div class="row">
+<h1 id="invite" >Research and publications </h1>
+</div>
+<div class="row">
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <!--open project, to close delete "in" in class collapse-->
+
+				<!--Research Software Hackathon @FORCE19-->
+				<div class="panel panel-default">
+				 <div class="panel-heading" role="tab" id="headingAlasca">
+				   <h4 class="panel-title">
+					  <a data-toggle="collapse" data-parent="#accordion" href="#collapseAlasca" aria-expanded="true" aria-controls="collapseAlasca">
+					  <span class="badge"> 2019</span>
+						<span class="space-left text-uppercase">Research Software Hackathon @FORCE19</span>
+					  <h6 class="pull-right hidden-xs"> event</h6>
+					  </a>
+				   </h4>
+				 </div>
+				 <div id="collapseAlasca" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingAlasca">
+				   <div class="panel-body" id="force19Hackathon">
+
+				   </div>
+			  	</div>
+			  </div>
+				  <!--closed research artifacts-->
+          <!-- ipres article 2018-->
+	      <div class="panel panel-default">
+		        <div class="panel-heading" role="tab" id="headingOne">
+		         <h4 class="panel-title">
+		         	<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+			             <span class="badge"> 2018</span>
+			           <span class="space-left text-uppercase">Identifiers for Digital
+                   Objects: the Case of Software Source Code Preservation </span>
+			           <h6 class="pull-right hidden-xs"> published article</h6>
+			       </a>
+		         </h4>
+		       </div>
+		       <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+		          <div class="panel-body" id= "ipresArticle">
+
+		          </div>
+		       </div>
+	      </div>
+      <!-- poster -->
+      <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+           <h4 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                 <span class="badge"> 2018</span>
+               <span class="space-left text-uppercase">La création du nouveau type de dépôt scientifique - Le logiciel  </span>
+               <h6 class="pull-right hidden-xs"> presented poster</h6>
+           </a>
+           </h4>
+         </div>
+         <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+            <div class="panel-body" id= "jsoPoster">
+
+
+            </div>
+         </div>
+      </div>
+	</div>
+</div>
+
+
+</div>
+
+
+<script>
+var research = ['ipresArticle', 'force19Hackathon','posterRDA', 'jsoPoster'];
+for (i = 0; i < research.length ; i++)
+{
+	var tmp = research[i];
+	console.log(tmp);
+	$("#"+tmp).load("en/research/"+tmp+".html");
+}
+
+</script>
