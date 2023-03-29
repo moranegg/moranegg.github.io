@@ -1,0 +1,50 @@
+[1mdiff --git a/en/research.html b/en/research.html[m
+[1mindex 6c96c7a..d0aeff0 100644[m
+[1m--- a/en/research.html[m
+[1m+++ b/en/research.html[m
+[36m@@ -11,16 +11,16 @@[m
+ [m
+ 				<!--Research Software Hackathon @FORCE19-->[m
+ 				<div class="panel panel-default">[m
+[31m-				 <div class="panel-heading" role="tab" id="headingAlasca">[m
+[32m+[m				[32m <div class="panel-heading" role="tab" id="headingForce19">[m
+ 				   <h4 class="panel-title">[m
+[31m-					  <a data-toggle="collapse" data-parent="#accordion" href="#collapseAlasca" aria-expanded="true" aria-controls="collapseAlasca">[m
+[32m+[m					[32m  <a data-toggle="collapse" data-parent="#accordion" href="#collapseAlasca" aria-expanded="true" aria-controls="collapseForce19">[m
+ 					  <span class="badge"> 2019</span>[m
+ 						<span class="space-left text-uppercase">Research Software Hackathon @FORCE19</span>[m
+ 					  <h6 class="pull-right hidden-xs"> event</h6>[m
+ 					  </a>[m
+ 				   </h4>[m
+ 				 </div>[m
+[31m-				 <div id="collapseAlasca" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingAlasca">[m
+[32m+[m				[32m <div id="collapseForce19" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingForce19">[m
+ 				   <div class="panel-body" id="force19Hackathon">[m
+ [m
+ 				   </div>[m
+[36m@@ -45,7 +45,24 @@[m
+ 							</div>[m
+ 					 </div>[m
+ 				</div>[m
+[31m-				<!-- moderation workflow-->[m
+[32m+[m				[32m<!-- LibrePlanet 2018-->[m
+[32m+[m			[32m<div class="panel panel-default">[m
+[32m+[m					[32m<div class="panel-heading" role="tab" id="headingLP18">[m
+[32m+[m					[32m <h4 class="panel-title">[m
+[32m+[m						[32m<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseLP18" aria-expanded="false" aria-controls="collapseLP18">[m
+[32m+[m								[32m <span class="badge"> 2018</span>[m
+[32m+[m							[32m <span class="space-left text-uppercase">Pathways for discovery of free software. LibrePlanet 20218 </span>[m
+[32m+[m							[32m <h6 class="pull-right hidden-xs"> Talk</h6>[m
+[32m+[m					[32m </a>[m
+[32m+[m					[32m </h4>[m
+[32m+[m				[32m </div>[m
+[32m+[m				[32m <div id="collapseLP18" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingLP18">[m
+[32m+[m						[32m<div class="panel-body" id= "librePlanet2018">[m
+[32m+[m
+[32m+[m						[32m</div>[m
+[32m+[m				[32m </div>[m
+[32m+[m			[32m</div>[m
+[32m+[m				[32m<!-- moderation workflow 2018-->[m
+ 			<div class="panel panel-default">[m
+ 					<div class="panel-heading" role="tab" id="headingSix">[m
+ 					 <h4 class="panel-title">[m
