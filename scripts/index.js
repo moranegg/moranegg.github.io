@@ -42,8 +42,8 @@ var router = {
     projects: function(){
       $("#includedContent").load("en/projects.html");
 		},
-    services: function(){
-      $("#includedContent").load("en/services.html");
+    speaking: function(){
+      $("#includedContent").load("en/speaking.html");
 		},
 }
 
